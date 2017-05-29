@@ -1,0 +1,30 @@
+.main-col {
+    background: #fff;
+    padding: 55px;
+    text-align: center;
+    box-shadow: 1px 1px 10px;
+    opacity: 0.9;
+    margin-top: 50px;
+}
+
+.main-col p {
+    margin: 25px 0 25px 0;
+}
+
+.article-detail__date {
+    font-weight: bold;
+
+    margin: 25px 0 25px 0;
+}
+
+.post__photo span {
+        display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.slider__item__img {
+    max-width: 1000px;
+    margin: 5px 0 5px 0;
+}

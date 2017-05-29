@@ -1,0 +1,121 @@
+﻿@using System.Web.Mvc.Html
+@model PVT.Q1._2017.Shop.Areas.Management.ViewModels.TrackManagementViewModel
+@{ ViewBag.Title = "Правка"; }
+
+@using (Html.BeginForm("Edit", "Tracks", FormMethod.Post, new { enctype = "multipart/form-data", name = "formedit" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("Id", Model.Id)
+    @Html.Hidden("ArtistId", Model.ArtistId)
+
+    @Html.ValidationSummary(true)
+
+    <div class="track-edit col-md-12">
+        <div class="left col-md-3">
+            @{
+                if (Model.Image != null)
+                {
+                    <img class="img-thumbnail col-md-12" id="details-img" onclick="document.formedit.PostedImage.click()"
+                         onerror="this.src = '/img/defuserpic.png'" src="data:image;base64,@Convert.ToBase64String(Model.Image)" />
+                }
+                else
+                {
+                    {
+                        <img class="img-thumbnail col-md-12" id="details-img" onclick="document.formedit.PostedImage.click()"
+                             onerror="this.src = '/img/defuserpic.png'" src="data:image;base64" />
+                    }
+                }
+            }
+            
+        </div>
+
+        <div class="right col-md-9">
+            <ul class="list-group ">
+
+                <li class="list-group-item">
+                    @Html.DisplayNameFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </li>
+
+                <li class="list-group-item">
+                    @Html.DisplayNameFor(m => m.ArtistName)
+                    @Html.TextBoxFor(m => m.ArtistName, new { @class = "form-control" })
+                </li>
+
+                <li class="list-group-item">
+                    @Html.DisplayNameFor(m => m.ReleaseDate)
+                    @Html.TextBoxFor(m => m.ReleaseDate, "{0:dd.MM.yyyy}", new { @class = "form-control datecontrol" })
+                    @Html.ValidationMessageFor(model => model.ReleaseDate)
+                </li>
+
+                <li class="list-group-item">
+                    @Html.DisplayNameFor(m => m.GenreId)
+                    @Html.DropDownListFor(model => model.GenreId, new SelectList(Model.Genres, "Id", "Name"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GenreId)
+                </li>
+
+                <li class="list-group-item">
+                    @Html.DisplayNameFor(m => m.Duration)
+                    @Html.TextBoxFor(m => m.Duration, new { @class = "form-control", id= "track-duration" })
+                    @Html.ValidationMessageFor(model => model.Duration)
+                </li>
+
+                <li class="list-group-item">
+                    @Html.DisplayNameFor(m => m.Price)
+                    <div class="row">
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Price, new { id = "txtTrackPrice", @class = "form-control" })
+                        </div>
+                        <div class="col-sm-2">
+                            @{ Html.RenderAction("UserCurrency", "Currency", new { area = string.Empty }); }
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    @Html.DisplayNameFor(m => m.PostedTrackFile)
+                    <div class="inner-addon right-addon">
+                        <input placeholder="Файл" type="text" class="form-control" id="file-path" name="FileName" onclick="document.formedit.PostedTrackFile.click()" value="@Model.FileName">
+                        <i class="btn-remove-track glyphicon glyphicon-remove" onclick="javaScript: ClearTrackFile();" style="position: absolute; padding: 10px; right: 0px"></i>
+                        <audio controls style="width: 100%; height: 35px">
+                            <source src="@Url.Action("GetTrackAsStream", "Tracks", new { area = "Content", id = Model.Id })" type="audio/mp3" />
+                        </audio>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="buttons">
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</button>
+            <a class="btn btn-danger" href="@Url.Action("Delete", "Tracks", new { area = "Management", id = Model.Id })">
+                <span class="glyphicon glyphicon-remove"></span> Удалить
+            </a>
+        </div>
+    </div>
+
+    <input type="file" id="file" name="PostedImage" accept=".jpg, *.png" style="display: none"/>
+    <input type="file" id="track-file" name="PostedTrackFile" accept=".mp3" style="display: none"/>
+}
+
+@section scripts
+{
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+    @System.Web.Optimization.Scripts.Render("~/bundles/inputmask")
+    @System.Web.Optimization.Scripts.Render("~/bundles/content-management-scripts")
+
+    <script>
+        function ClearTrackFile() {
+            $("#file-path").val('');
+        }
+
+        $(function () {
+            convertToPriceTextbox('txtTrackPrice');
+            $("#track-duration").inputmask("99:99:99");
+        });
+    </script>
+}
+
+@section cssStyles
+{
+    <link href="~/Content/tracks.css" rel="stylesheet"/>
+}

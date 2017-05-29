@@ -1,0 +1,24 @@
+﻿@model string
+<button onclick="playPause()">PlayPause</button>
+<audio id="hiddenAudio" style="display: none">
+    <source src="@Model" type="audio/mp3"/>
+</audio>
+
+<script>
+    var curentStatement = 0;
+    var player = document.getElementById("hiddenAudio");
+
+    function playPause() {
+        if (curentStatement === 0) {
+            player.play();
+            curentStatement = 1;
+        } else {
+            player.pause();
+            curentStatement = 0;
+        }
+    }
+
+    function download() {
+        player.getAsFile();
+    }
+</script>

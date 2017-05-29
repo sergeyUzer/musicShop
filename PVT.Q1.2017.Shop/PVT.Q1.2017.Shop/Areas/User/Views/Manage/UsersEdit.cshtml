@@ -1,0 +1,62 @@
+﻿@model Shop.Infrastructure.Models.PagedResult<Shop.Common.ViewModels.UserEditView>
+@using PVT.Q1._2017.Shop.Helpers
+@using Shop.Common.Models
+
+@{
+    ViewBag.Title = "Управление пользователями";
+}
+
+
+<div class="ui-widget" id="search-box">
+    <label for="lastName">Поиск: </label>
+    <input id="lastName">
+</div>
+
+@Html.Partial("_UsersEdit", Model.Items)
+
+@Html.PageLinks(Model, i => Url.Action("UsersEdit", new { id = i, controller = "Manage", area = "User" }))
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $("#lastName").autocomplete(
+                {
+                    minLength: 2,
+                    source: function (request, response) {
+                        $.ajax(
+                            {
+                                url: "@Url.Action("GetLastNameMatchingData",new { controller = "Manage", area = "User"})",
+                                type: "get",
+                                data: {
+                                    term: request.term
+                                },
+                                success: function (data) {
+                                    response($.map(data, function (item) {
+                                        return {
+                                            label: item.LastName + " "+ item.FirstName,
+                                            value: item.LastName,
+                                            Id: item.Id
+                                        }
+                                    })
+                                    );
+                                }
+
+                            });
+                    },
+                    select: function (event, ui) {
+                        var link = '@Url.Action("Edit", "Manage", new { area = "User", Id = "id_holder" }, Request.Url.Scheme)';
+                        document.location.href = link.replace("id_holder", ui.item.Id);
+                        return false;
+                    }
+                });
+        });
+    </script>
+}
+
+
+@section cssStyles
+{
+    <link href="~/Content/themes/base/autocomplete.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+}

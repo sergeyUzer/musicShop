@@ -1,0 +1,85 @@
+﻿@using PVT.Q1._2017.Shop.Areas.Content.Extentions
+@using Shop.BLL.Utils
+@using Shop.Infrastructure.Enums
+@model Shop.Common.ViewModels.AlbumDetailsViewModel
+
+@{
+    var isAuthenticated = Request.IsAuthenticated;
+    var currentUserId = 0;
+    var isAdmin = false;
+    var isSeller = false;
+    var isBuyer = false;
+    if (isAuthenticated)
+    {
+        var currentUser = ((CurrentUser)User);
+        currentUserId = currentUser.Id;
+        isAdmin = User.IsInRole(UserRoles.Admin.ToString());
+        isSeller = User.IsInRole(UserRoles.Seller.ToString());
+        isBuyer = User.IsInRole(UserRoles.Buyer.ToString()) || User.IsInRole(UserRoles.Customer.ToString());
+    }
+
+}
+
+
+<div class="left col-md-3" style="padding: 15px">
+    <img class="img-thumbnail" src="data:image;base64,@Convert.ToBase64String(Model.Cover)" onerror="src = '/img/defuserpic.png'"/>
+</div>
+<div class="right">
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <div class="info">
+                <p>
+                    <strong>@Html.DisplayNameFor(m => m.Name):</strong> @Html.ValueFor(m => m.Name)
+                </p>
+                @if (Model.Artist != null)
+                {
+                    <p>
+                        <strong>@Html.DisplayNameFor(m => m.Artist):</strong>
+
+                        <a href="@Url.Action("Details", "Artists", new { id = Model.Artist.Id, area = "Content" })"
+                           title="Нажмите, чтобы увидеть информацию об исполнителе">
+                            @Model.Artist.Name
+                        </a>
+                    </p>
+                }
+                <p>
+                    <strong>@Html.DisplayNameFor(m => m.ReleaseDate):</strong> @Html.ValueFor(m => m.ReleaseDate, "{0:dd MMMM yyyy} г.")
+                </p>
+                <p>
+                    <strong>Треков в альбоме:</strong>
+                    @Html.ActionLink(Model.TracksCount.ToString(), "Details", "Albums", new { area = "Content", id = Model.Id }, new { @class = "badge", style = "color: #fff !important; font-size: 16px;" })
+                </p>
+                <p>
+                    <strong>@Html.DisplayNameFor(m => m.Price):</strong> @Html.DisplayFor(m => m.Price)
+                </p>
+            </div>
+            @if (isAuthenticated)
+            {
+                <div class="buttons col-md-3">
+                    @if (isAdmin || (isSeller && (Model.OwnerId <= 0m || Model.OwnerId == currentUserId)))
+                    {
+                        <a href="@Url.Action("Edit", "Albums", new { Area = "Management", id = Model.Id })"
+                           class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>
+                            Правка
+                        </a>
+                    }
+                    else if (isBuyer)
+                    {
+                        if (Model.IsPurchased)
+                        {
+                            @Html.ButtonWithIcon("btn btn-sm btn-success", "glyphicon glyphicon-music", "Мои альбомы", Url.Action("PurchasedList", "Albums", new { area = "Content" }))
+                        }
+                        else if (Model.Price != null)
+                        {
+                            var price = string.Format("{0}{1}", Model.Price.Amount, Model.Price.Currency.Symbol ?? Model.Price.Currency.ShortName);
+                            <div class="buy-btn">
+                                @Html.BtnBuyAlbum(Model.Id, Model.IsOrdered, price)
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Success";
+}
+
+<h2>Завершено успешно</h2>
+
+<div>
+    <img src="~/img/success.png" />
+    <p>Вы будете перенаправлены на главную страницу через 5 секунд....</p>
+    <p>В случае если этого не произошло нажмите @Html.ActionLink("эту ссылку", "AcceptPayment", new { Controller = "Cart", Area = "Payment" })</p>
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    
+    function back2main(){
+        var url = "/Payment/Cart/AcceptPayment";
+        $(location).attr('href', url);
+    }
+
+    $(document).ready(
+        setTimeout(back2main, 5000)
+       )
+</script>

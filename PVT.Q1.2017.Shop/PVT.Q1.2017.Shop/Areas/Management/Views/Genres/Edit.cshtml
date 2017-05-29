@@ -1,0 +1,37 @@
+﻿@model PVT.Q1._2017.Shop.Areas.Management.ViewModels.GenreManagementViewModel
+
+@{
+    ViewBag.Title = "Правка";
+}
+<div class="genre-edit">
+    @using (Html.BeginForm("Edit", "Genres", FormMethod.Post, new { enctype = "multipart/form-data", style = "width: 100%" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="input-container">
+            @Html.EditorFor(m => m.Name, new { htmlAttributes = new { placeholder = "Имя", @class = "form-control" } })
+            @Html.TextAreaFor(m => m.Description, new { htmlAttributes = new { placeholder = "Описание"} })
+        </div>
+        <div class="buttons">
+            @*save-btn*@
+            <a class="btn btn-primary" href="javascript:document.forms[0].submit()">
+                <span class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+            </a>
+
+            @*delete-btn*@
+            <a class="btn btn-danger" href="javascript:document.forms[1].submit()">
+                <span class="glyphicon glyphicon-remove"></span> Удалить
+            </a>
+        </div>
+    }
+    @using (Html.BeginForm("Delete", "Genres", new { area = "Management" }, FormMethod.Post, new { enctype = "multipart/form-data", name = "formdel" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+    }
+
+</div>
+
+@section cssStyles{
+    <link href="/Content/tracks.css" rel="stylesheet" type="text/css"/>
+}

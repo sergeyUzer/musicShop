@@ -1,0 +1,186 @@
+﻿
+.navbar-collapse { font-size: 15px; }
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url("../img/back.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* Set padding to keep content from hitting the edges */
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.field-validation-error { color: darkred; }
+
+.error {
+    font-size: 16px;
+    color: brown !important;
+}
+
+.navbar-form { width: 300px; }
+
+.search-box {
+    padding-left: 0 !important;
+    margin-top: 7.9px !important;
+    padding-right: 0 !important;
+    width: 350px !important;
+}
+
+.error-header {
+    font-size: 36px !important;
+    color: brown;
+}
+
+.search-group { display: block !important; }
+
+.search-btn { height: 34px !important; }
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+input,
+select,
+textarea { max-width: 280px; }
+
+#main-cart-icon {
+    border: none;
+    background: #222;
+    color: #ff6347
+}
+
+body { background-color: #dadada; }
+
+.navbar {
+    border: none;
+    height: 25px;
+}
+
+.navbar-collapse { width: 1050px !important; }
+
+.navbar-inverse .navbar-brand {
+    color: white;
+    font-size: 28px !important;
+    text-shadow: 1px 1px 10px;
+}
+
+.container .navbar-collapse form { margin-right: 40px; }
+
+.dropdown-menu li a:hover { background: cornflowerblue !important; }
+
+.title {
+    margin-top: 0;
+    text-align: center;
+    background: #222;
+    text-align: center;
+    display: block;
+    font-size: 3em;
+    color: white;
+    z-index: 101;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+a #currency-dropdown {
+    margin-top: -2px;
+    height: 25px;
+    border: none;
+    background: black;
+    border-radius: 18px;
+    font-size: 11px;
+    color: #999;
+    box-shadow: 1px 1px 10px #ff6347;
+}
+
+#currency-dropdown {
+    max-width: 70px !important;
+}
+
+#bc-override {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: 15px;
+    padding-left: 10px;
+    color: black;
+    background: none;
+    margin-bottom: 5px;
+}
+
+.main-header { overflow: hidden; }
+
+.no-information { font-style: italic; }
+
+dl dd { padding-left: 5px; }
+
+.empty-cart-message {
+    color: white;
+    left: 780px;
+    top: 450px;
+    font-size: 45px;
+}
+footer {
+    text-align: center;
+}
+footer p {
+    height: 18px;
+    text-shadow: 1px 1px 10px white;
+    color: white;
+}
+
+#curr-table, #users-table, .user-reg, .user-edit-center, #country-table, .paymens-table {
+    background: #fff;
+    opacity: 0.9;
+    border-radius: 15px;
+    margin-top: 25px;
+    padding: 15px;
+}
+
+#lastName {
+    border-radius: 5px;
+    max-width: 400px;
+    width: 400px;
+}
+
+#search-box {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#user-edit-form {
+    width: 500px;
+    display: inline-block;
+}
+
+.user-edit-center {
+    width: 100%;
+    text-align: center;
+}
+
+#user-edit-savebtn {
+    width: 150px;
+    margin-bottom: 30px !important;
+}
+
+.email-confirmed {
+    text-align: left;
+    margin-left: 15px;
+}
+
+.user-dropdown-menu:hover {
+    color: white !important;
+}
+.media-menu:hover {
+    color: white !important;
+}
+
+.add-rate-container {
+    background: #fff;
+    border-radius: 15px;
+    opacity: 0.9;
+}
+.datecontrol { /* please do not remove this style;it is used for editing dates */ }

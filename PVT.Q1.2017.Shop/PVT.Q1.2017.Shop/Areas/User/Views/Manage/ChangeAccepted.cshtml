@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Изменения в аккаунт";
+}
+
+<h4>Данные аккаунта изменены</h4>
+
+<h5>@ViewBag.Message</h5>
+
+<input type="button" class="btn" value="Редактировать данные профиля" onclick="location.href='@Url.Action("UpdatePersonal", "Manage", new { area = "User"})'" />
+<input type="button" class="btn" value="Изменить пароль" onclick="location.href='@Url.Action("ChangePassword", "Manage", new { area = "User"})'" />
+<input type="button" class="btn" value="Изменить логин" onclick="location.href='@Url.Action("ChangeLogin", "Manage", new { area = "User"})'" />
+<input type="button" class="btn" value="Удалить аккаунт" onclick="location.href='@Url.Action("DeleteCurrentUserMessage", "Manage", new { area = "User"})'" />

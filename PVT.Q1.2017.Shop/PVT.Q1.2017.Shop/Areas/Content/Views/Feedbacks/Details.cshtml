@@ -1,0 +1,163 @@
+﻿@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@using PVT.Q1._2017.Shop.Areas.Content.Extentions
+@model Shop.Common.ViewModels.TrackFeedbacksListViewModel
+
+@{
+    ViewBag.Title = "Отзывы о треке";
+    string currentUserComments = string.Empty;
+    int currentUserMark = 0;
+    if (ViewBag.CurrentFeedback != null)
+    {
+        currentUserComments = ViewBag.CurrentFeedback.Comments;
+        currentUserMark = ViewBag.CurrentFeedback.Mark;
+    }
+}
+
+<div class="row feedback-details">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>
+                    @Html.ActionLink(Model.TrackDetails.Name, "Details", "Tracks", new { area = "Content", id = Model.TrackDetails.Id }, new { @class="track-name" })
+                </h4>
+                <h5>
+                    @Html.ActionLink(@Model.TrackDetails.Artist.Name, "Details", "Artists", new { area = "Content", id = Model.TrackDetails.Artist.Id }, new { @class="artist-name" })
+                </h5>
+
+                <p>
+                    @Html.DisplayFor(model => model.TrackDetails.Rating)
+                </p>
+
+                @if (Model.TrackDetails.Image != null && Model.TrackDetails.Image.Length > 0)
+                {
+                    <img src="data:image;base64,@Convert.ToBase64String(Model.TrackDetails.Image)" alt="Изображение трека"
+                         class="img-thumbnail img-responsive" style="max-width: 300px; max-height: 300px" />
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="panel">
+            <div class="panel-body">
+                @using (Html.BeginForm("New", "Feedbacks", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input name="TrackId" id="TrackId" value="@Model.TrackDetails.Id" type="hidden" />
+                    <input name="Mark" id="Mark" value="@currentUserMark" type="hidden" />
+
+                    <div class="form-group">
+                        <label for="newMarkContainer" class="control-label col-sm-2">Ваша оценка</label>
+                        <div class="col-sm-10">
+                            <div id="prevMarkContainer" style="display: none">
+                                @{
+                                    Html.RenderPartial("_Rating", (double)currentUserMark);
+                                }
+                            </div>
+                            <div class="zero-stars" id="newMarkContainer">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div id="star1" class="empty-star-place"></div>
+                                        </td>
+                                        <td>
+                                            <div id="star2" class="empty-star-place"></div>
+                                        </td>
+                                        <td>
+                                            <div id="star3" class="empty-star-place"></div>
+                                        </td>
+                                        <td>
+                                            <div id="star4" class="empty-star-place"></div>
+                                        </td>
+                                        <td>
+                                            <div id="star5" class="empty-star-place"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Comments">Ваши комментарии</label>
+                        <div class="col-sm-10">
+                            <textarea name="Comments" id="Comments" rows="5" class="form-control"
+                                      placeholder="Оставьте Ваши комментарии">@currentUserComments</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            @Html.ButtonWithIcon("btn btn-sm btn-success", "glyphicon glyphicon-comment", "Оставить отзыв", null, "submit()")
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.Feedbacks != null && Model.Feedbacks.Count > 0)
+{
+    <div class="panel">
+        <div class="panel-body">
+            <h2>Отзывы пользователей</h2>
+            <table class="table table-hover table-responsive">
+                @foreach (var feedback in Model.Feedbacks)
+                {
+                    <tr>
+                        <td>
+                            <b>@feedback.UserName</b>
+                        </td>
+                        <td>
+                            @{
+                                Html.RenderPartial("_Rating", (double) feedback.Mark);
+                            }
+                        </td>
+                        <td>
+                            @feedback.Comments
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+
+@section cssStyles
+{
+    @Styles.Render("~/bundles/cssTracks")
+}
+
+@section scripts
+{
+    <script type="text/javascript" language="javascript">
+        var currentMarkStyle;
+        $(function () {
+            currentMarkStyle = $("#prevMarkContainer").children().get(0).className;
+            $("#newMarkContainer").get(0).className = currentMarkStyle;
+
+            bindStarToMark("star1", "one-star", 1);
+            bindStarToMark("star2", "two-stars", 2);
+            bindStarToMark("star3", "three-stars", 3);
+            bindStarToMark("star4", "four-stars", 4);
+            bindStarToMark("star5", "five-stars", 5);
+        });
+
+        function bindStarToMark(starId, markClass, mark) {
+            $("#" + starId).on("mouseover",
+                function() {
+                    $("#newMarkContainer").get(0).className = markClass;
+                }).on("mouseout",
+                function () {
+                    $("#newMarkContainer").get(0).className = currentMarkStyle;
+                }).on("click",
+                function() {
+                    $('#Mark').val(mark);
+                    currentMarkStyle = markClass;
+                    return false;
+                });
+        }
+    </script>
+}

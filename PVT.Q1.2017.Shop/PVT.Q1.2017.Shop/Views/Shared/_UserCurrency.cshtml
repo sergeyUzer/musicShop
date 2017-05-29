@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Shop.Common.ViewModels.CurrencyViewModel>
+
+@if (Model != null)
+{
+    <select class="form-control input-sm" id="currency-dropdown" onchange="updateUserCurrency(options[selectedIndex].value);">
+        @foreach (var currency in Model)
+        {
+            if (currency.Code == ViewBag.SelectedCurrency)
+            {
+                <option value="@currency.Code" selected="selected">@currency.ShortName</option>
+            }
+            else
+            {
+                <option value="@currency.Code">@currency.ShortName</option>
+            }
+        }
+    </select>
+}

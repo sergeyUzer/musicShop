@@ -1,0 +1,24 @@
+﻿@model int
+<link href="~/Content/bootstrapStars.css" rel="stylesheet"/>
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<div class="stars">
+    <form action="">
+        <input class="star star-5" id="@Model.ToString()5" type="radio" name="star" onclick="javascript: GetValue(id);" />
+        <label class="star star-5" for="@Model.ToString()5"></label>
+        <input class="star star-4" id="@Model.ToString()4" type="radio" name="star" onclick="javascript: GetValue(id);"/>
+        <label class="star star-4" for="@Model.ToString()4"></label>
+        <input class="star star-3" id="@Model.ToString()3" type="radio" name="star" onclick="javascript: GetValue(id);"/>
+        <label class="star star-3" for="@Model.ToString()3"></label>
+        <input class="star star-2" id="@Model.ToString()2" type="radio" name="star" onclick="javascript: GetValue(id);"/>
+        <label class="star star-2" for="@Model.ToString()2"></label>
+        <input class="star star-1" id="@Model.ToString()1" type="radio" name="star" onclick="javascript: GetValue(id);"/>
+        <label class="star star-1" for="@Model.ToString()1"></label>
+    </form>
+</div>
+
+<script>
+    function GetValue(id) {
+        var result = id.match(/^\d+(\d{1})$/);
+        return result;
+    }
+</script>

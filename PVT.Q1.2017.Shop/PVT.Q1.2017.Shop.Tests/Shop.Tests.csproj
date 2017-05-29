@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F417DC56-FF28-42EA-A1D3-48C86E5DB1F5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PVT.Q1._2017.Shop.Tests</RootNamespace>
+    <AssemblyName>PVT.Q1.2017.Shop.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminCurrencyControllerTests.cs" />
+    <Compile Include="ArtistServiceTest.cs" />
+    <Compile Include="AlbumServiceTest.cs" />
+    <Compile Include="CartControllerTests.cs" />
+    <Compile Include="CartServiceTest.cs" />
+    <Compile Include="CurrencyServiceTest.cs" />
+    <Compile Include="ModelsMapperTest.cs" />
+    <Compile Include="Moq\AlbumPriceRepositoryMoq.cs" />
+    <Compile Include="Moq\AlbumRepositoryMoq.cs" />
+    <Compile Include="Moq\AlbumTrackRelationRepositoryMoq.cs" />
+    <Compile Include="Moq\ArtistRepositoryMoq.cs" />
+    <Compile Include="Moq\CurrencyRateRepositorMoq.cs" />
+    <Compile Include="Moq\CurrencyRepositoryMoq.cs" />
+    <Compile Include="Moq\FeedbackRepositoryMoq.cs" />
+    <Compile Include="Moq\GenreRepositoryMoq.cs" />
+    <Compile Include="Moq\HttpSessionMoq.cs" />
+    <Compile Include="Moq\OrderAlbumRepositoryMoq.cs" />
+    <Compile Include="Moq\PaymentTransactionRepositoryMoq.cs" />
+    <Compile Include="Moq\OrderTrackRepositoryMoq.cs" />
+    <Compile Include="Moq\PriceLevelRepositoryMoq.cs" />
+    <Compile Include="Moq\PurchasedAlbumRepositoryMoq.cs" />
+    <Compile Include="Moq\PurchasedTrackRepositoryMoq.cs" />
+    <Compile Include="Moq\RepositoryFactoryMoq.cs" />
+    <Compile Include="Moq\UserPaymentMethodRepositoryMoq.cs" />
+    <Compile Include="Moq\SettingRepositoryMoq.cs" />
+    <Compile Include="Moq\UserRepositoryMoq.cs" />
+    <Compile Include="PaymentServiceTest.cs" />
+    <Compile Include="SettingServiceTest.cs" />
+    <Compile Include="UserServiceTests.cs" />
+    <Compile Include="FeedbackServiceTest.cs" />
+    <Compile Include="BllServiceTests\CurrencyRateServiceTest.cs" />
+    <Compile Include="CartViewModelServiceTests.cs" />
+    <Compile Include="Moq\TrackPriceRepositoryMoq.cs" />
+    <Compile Include="Moq\TrackRepositoryMoq.cs" />
+    <Compile Include="Moq\UserDataRepositoryMoq.cs" />
+    <Compile Include="Moq\VoteRepositoryMoq.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AlbumPriceServiceTest.cs" />
+    <Compile Include="TrackPriceServiceTest.cs" />
+    <Compile Include="TrackServiceTest.cs" />
+    <Compile Include="UserPaymentMethodTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PVT.Q1.2017.Shop\Shop.Web.csproj">
+      <Project>{E4A77FB8-FDF0-4EF0-8F2F-BC92098E306E}</Project>
+      <Name>Shop.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ship.Infrastructure\Shop.Infrastructure.csproj">
+      <Project>{c0e3b0f8-3fd8-4d53-b3b1-b98bdf5da9cf}</Project>
+      <Name>Shop.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shop.BLL\Shop.BLL.csproj">
+      <Project>{14cd3c31-4dca-4798-82d5-de66a5c72602}</Project>
+      <Name>Shop.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shop.Common\Shop.Common.csproj">
+      <Project>{3d15cc83-6093-4606-a948-d834033d3692}</Project>
+      <Name>Shop.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shop.DAL\Shop.DAL.csproj">
+      <Project>{c30727da-8c05-4773-a9c9-b01c8e951fb4}</Project>
+      <Name>Shop.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

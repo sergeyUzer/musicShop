@@ -1,0 +1,27 @@
+﻿.title, #bc-override {
+    display: none;
+}
+
+.content-block {
+    margin-top: 25px;
+}
+
+.news-header {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.content-block__title {
+    font-size: 58px;
+    text-shadow: 1px 1px 10px 
+}
+
+.article__title__link {
+    color: white;
+    text-shadow: 1px 1px 10px black
+}
+
+.article__title {
+    margin-bottom: 40px;
+}
+

@@ -1,0 +1,58 @@
+﻿@model PVT.Q1._2017.Shop.Areas.Management.ViewModels.AlbumManagementViewModel
+
+@{
+    ViewBag.Title = "Удаление альбома";
+}
+
+
+<h3>Вы уверены, что хотите удалить альбом "@Model.Name"?</h3>
+<div>
+    <dl class="dl-horizontal">
+        @if (Model.ArtistId != null && Model.ArtistId > 0)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.ArtistName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ArtistName)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Name)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-danger" /> |
+            @Html.ActionLink("Назад к правке", "Edit", "Albums", new { area = "Management", id = Model.Id }, null)
+        </div>
+    }
+</div>

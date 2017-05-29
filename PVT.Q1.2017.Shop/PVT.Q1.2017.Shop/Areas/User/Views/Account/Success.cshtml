@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Регистрация пройдена";
+}
+
+<h2>Поздравляем! Вы успешно зарегистрировались в нашем магазине.</h2>
+<br />
+
+<div class="user-edit-center">
+    <h4>Заполните, пожалуйста, свой @Html.ActionLink("профиль", "UpdatePersonal", new { area = "User", controller = "Manage" })</h4>
+
+    <br/>
+
+    <h4> Или Вы можете сразу приступить к @Html.ActionLink("покупкам", "List", new { area = "Content", controller = "Tracks" })</h4>
+</div>

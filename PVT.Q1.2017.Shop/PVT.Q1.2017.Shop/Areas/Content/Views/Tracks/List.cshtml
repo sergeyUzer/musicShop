@@ -1,0 +1,19 @@
+﻿@using PVT.Q1._2017.Shop.Helpers
+@model Shop.Infrastructure.Models.PagedResult<Shop.Common.ViewModels.TrackViewModel>
+
+@{ ViewBag.Title = "Все треки"; }
+<audio controls controlsList="nodownload" id="audio-hidden" type="audio/mp3" autoplay="autoplay" style="display: none"></audio>
+
+@{
+    Html.RenderPartial("_TracksList", Model.Items);
+}
+
+@Html.PageLinks(Model, i => Url.Action("List", "Tracks", new { page = i, area = "Content" }))
+
+@section cssStyles {
+    @System.Web.Optimization.Styles.Render("~/bundles/cssTracks")
+}
+
+@section scripts {
+    <script src="~/Scripts/get-audio.js"></script>
+}

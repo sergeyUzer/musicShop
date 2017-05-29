@@ -1,0 +1,79 @@
+@using PVT.Q1._2017.Shop.Areas.Content.Extentions
+@using Shop.BLL.Utils
+@using Shop.Infrastructure.Enums
+@model ICollection<Shop.Common.ViewModels.AlbumViewModel>
+
+@{
+    bool isAuthenticated = Request.IsAuthenticated;
+    int currentUserId = 0;
+    bool isAdmin = false;
+    bool isSeller = false;
+    bool isBuyer = false;
+    if (isAuthenticated)
+    {
+        var currentUser = ((CurrentUser)User);
+        currentUserId = currentUser.Id;
+        isAdmin = User.IsInRole(UserRoles.Admin.ToString());
+        isSeller = User.IsInRole(UserRoles.Seller.ToString());
+        isBuyer = User.IsInRole(UserRoles.Buyer.ToString()) || User.IsInRole(UserRoles.Customer.ToString());
+    }
+
+}
+
+<div class="albums-list">
+    <ul class="list-group" id="slist">
+        @foreach (var album in Model)
+        {
+            <li class="list-group-item" id="albums-item col-md-12">
+                <img class="img-thumbnail" src="data:image;base64,@Convert.ToBase64String(album.Cover)" onerror="src = '/img/defuserpic.png'"/>
+                <div class="details col-md-9">
+                    <div class="album-title">
+                        <p>@Html.ActionLink(album.Name, "Details", "Albums", new { id = album.Id, area = "Content" }, new { @class = "album-name" })</p>
+                    </div>
+                    <br/>
+                    <p>
+                        Треков <span class="badge">@album.TracksCount</span>
+                    </p>
+                    @if (album.Artist != null)
+                    {
+                        <span class="label label-primary">@Html.ActionLink(album.Artist.Name, "Details", "Artists", new { id = album.Artist.Id, area = "Content" }, null)</span>
+                    }
+                </div>
+                <div class="btn-align">
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (isAdmin || (isSeller && (album.OwnerId <= 0m || album.OwnerId == currentUserId)))
+                        {
+                            <div class="edit-btn">
+                                <a class="btn btn-primary" href="@Url.Action("Edit", "Albums", new { Area = "Management", id = album.Id })"><span class="glyphicon glyphicon-pencil"></span> Правка</a>
+                            </div>
+                        }
+                        else if (isBuyer)
+                        {
+                            <div class="order-block">
+                                <div class="buy-btn">
+                                    @if (album.IsPurchased)
+                                    {
+                                        @Html.ButtonWithIcon("btn btn-sm btn-default", "glyphicon glyphicon-music", "Мои альбомы",
+                                                             Url.Action("PurchasedList", "Albums", new { area = "Content" }))
+                                    }
+                                    else if (album.Price != null)
+                                    {
+                                        var price = string.Format("{0}{1}", album.Price.Amount, album.Price.Currency.Symbol ?? album.Price.Currency.ShortName);
+                                        @Html.BtnBuyAlbum(album.Id, album.IsOrdered, price)
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                    else if (album.Price != null)
+                    {
+                        <div class="order-block">
+                            @Html.DisplayFor(m => album.Price)
+                        </div>
+                    }
+                </div>
+            </li>
+        }
+    </ul>
+</div>

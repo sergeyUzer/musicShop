@@ -1,0 +1,85 @@
+﻿@using Shop.Common.Models
+@model PVT.Q1._2017.Shop.Areas.Management.ViewModels.AlbumManagementViewModel
+@{
+    ViewBag.Title = "Правка";
+}
+
+@using (Html.BeginForm("Edit", "Albums", FormMethod.Post, new { enctype = "multipart/form-data", name = "formreg"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <input type="hidden" name="@Html.NameFor(m => m.ArtistId)" value="@Model.ArtistId"/>
+
+    <div class="album-edit">
+        <div class="left">
+            <img class="img-thumbnail" id="details-img" onclick="document.formreg.PostedCover.click()" onerror="src = '/img/defuserpic.png'" src="data:image;base64,@Convert.ToBase64String(Model.Cover)"/>
+            <div class="details" style="display: block; width: 100%;">
+                <ul class="list-group">
+                    @if (Model.ArtistId != null && Model.ArtistId > 0)
+                    {
+                        <li class="list-group-item">
+                            @Html.DisplayNameFor(m => m.ArtistName)
+                            @Html.EditorFor(m => m.ArtistName, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control disabled", placeholder = "Исполнитель" }, value = Model.ArtistName })
+                        </li>
+                    }
+                    <li class="list-group-item">
+                        @Html.DisplayNameFor(m => m.Name)
+                        @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Название", type = "text", value = Model.Name } })
+                    </li>
+                    <li class="list-group-item">
+                        @Html.DisplayNameFor(m => m.ReleaseDate)
+                        @Html.EditorFor(m => m.ReleaseDate, new { htmlAttributes = new { @class = "form-control datecontrol", placeholder = "Дата выпуска", type = "text", value = Model.ReleaseDate } })
+                    </li>
+                    <li class="list-group-item">
+                        @Html.DisplayNameFor(m => m.Price)
+                        <div class="row">
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(m => m.Price, new { id = "txtAlbumPrice", @class = "form-control" })
+                            </div>
+                            <div class="col-sm-4">
+                                @{ Html.RenderAction("UserCurrency", "Currency", new { area = string.Empty }); }
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <input type="file" id="file" name="PostedCover" accept=".jpg, .png" style="display: none"/>
+        </div>
+        <div class="right">
+            <h2>Треклист</h2>
+            <ol class="list-group">
+                @foreach (var track in (ICollection<Track>)ViewBag.Tracks)
+                {
+                    <li class="list-group-item">
+                        <input class="form-control" value="@track.Name" readonly="readonly"/>
+                    </li>
+                }
+            </ol>
+        </div>
+        <div class="buttons">
+            <a class="btn btn-primary" href="@Url.Action("AddTracksToAlbum", "Albums", new { area = "Management", id = Model.Id })">
+                <span class="glyphicon glyphicon-plus"></span> Трек
+            </a>
+            <a class="btn btn-danger" href="@Url.Action("Delete", "Albums", new { area = "Management", id = Model.Id })">
+                <span class="glyphicon glyphicon-remove"></span> Удалить
+            </a>
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+            </button>
+        </div>
+    </div>
+}
+
+@section scripts{
+    @System.Web.Optimization.Scripts.Render("~/bundles/content-management-scripts")
+
+    <script>
+        $(function () {
+            convertToPriceTextbox('txtAlbumPrice');
+        });
+    </script>
+}
+
+@section cssStyles{
+    <link href="~/Content/tracks.css" rel="stylesheet" type="text/css"/>
+}

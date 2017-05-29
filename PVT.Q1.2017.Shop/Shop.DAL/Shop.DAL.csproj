@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C30727DA-8C05-4773-A9C9-B01C8E951FB4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shop.DAL</RootNamespace>
+    <AssemblyName>Shop.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Factory, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Factory.3.2.1.0\lib\net45-full\Ninject.Extensions.Factory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastruture\IAlbumTrackRelationRepository.cs" />
+    <Compile Include="Infrastruture\IBaseAddressRepository.cs" />
+    <Compile Include="Infrastruture\ICountryRepository.cs" />
+    <Compile Include="Infrastruture\IOrderAlbumRepository.cs" />
+    <Compile Include="Infrastruture\IOrderTrackRepository.cs" />
+    <Compile Include="Infrastruture\IPaymentCardRepository.cs" />
+    <Compile Include="Infrastruture\IPaymentTransactionRepository.cs" />
+    <Compile Include="Infrastruture\IPurchasedAlbumRepository.cs" />
+    <Compile Include="Infrastruture\IPurchasedTrackRepository.cs" />
+    <Compile Include="Infrastruture\ISettingRepository.cs" />
+    <Compile Include="Infrastruture\IUserPaymentMethodRepository.cs" />
+    <Compile Include="Infrastruture\IUserRepository.cs" />
+    <Compile Include="Migrations\201703141950344_Init.cs" />
+    <Compile Include="Migrations\201703141950344_Init.Designer.cs">
+      <DependentUpon>201703141950344_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703152237293_ReconfigureTracksContent.cs" />
+    <Compile Include="Migrations\201703152237293_ReconfigureTracksContent.Designer.cs">
+      <DependentUpon>201703152237293_ReconfigureTracksContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703180835104_TablePrefixRemoved.cs" />
+    <Compile Include="Migrations\201703180835104_TablePrefixRemoved.Designer.cs">
+      <DependentUpon>201703180835104_TablePrefixRemoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703181116310_NewAlbumAndArtistRelations.cs" />
+    <Compile Include="Migrations\201703181116310_NewAlbumAndArtistRelations.Designer.cs">
+      <DependentUpon>201703181116310_NewAlbumAndArtistRelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703222040250_AddedUser.cs" />
+    <Compile Include="Migrations\201703222040250_AddedUser.Designer.cs">
+      <DependentUpon>201703222040250_AddedUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703252105050_UserAndUserDataRelations.cs" />
+    <Compile Include="Migrations\201703252105050_UserAndUserDataRelations.Designer.cs">
+      <DependentUpon>201703252105050_UserAndUserDataRelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703262002034_FixUserAndUserDataRelations.cs" />
+    <Compile Include="Migrations\201703262002034_FixUserAndUserDataRelations.Designer.cs">
+      <DependentUpon>201703262002034_FixUserAndUserDataRelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704012052497_AddedTrackSample.cs" />
+    <Compile Include="Migrations\201704012052497_AddedTrackSample.Designer.cs">
+      <DependentUpon>201704012052497_AddedTrackSample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704032220261_AddedTrackOwnerRelationship.cs" />
+    <Compile Include="Migrations\201704032220261_AddedTrackOwnerRelationship.Designer.cs">
+      <DependentUpon>201704032220261_AddedTrackOwnerRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704032227588_AddedAlbumOwnerRelationship.cs" />
+    <Compile Include="Migrations\201704032227588_AddedAlbumOwnerRelationship.Designer.cs">
+      <DependentUpon>201704032227588_AddedAlbumOwnerRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704032338545_FixedDiscountMistake.cs" />
+    <Compile Include="Migrations\201704032338545_FixedDiscountMistake.Designer.cs">
+      <DependentUpon>201704032338545_FixedDiscountMistake.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704041338001_UpdateRelationshipsBtwCartAndTracks.cs" />
+    <Compile Include="Migrations\201704041338001_UpdateRelationshipsBtwCartAndTracks.Designer.cs">
+      <DependentUpon>201704041338001_UpdateRelationshipsBtwCartAndTracks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704081859579_AddedRelationshipsBtwPurchasedItemsAndUsers.cs" />
+    <Compile Include="Migrations\201704081859579_AddedRelationshipsBtwPurchasedItemsAndUsers.Designer.cs">
+      <DependentUpon>201704081859579_AddedRelationshipsBtwPurchasedItemsAndUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704101650192_AddSettingTableForAdmin.cs" />
+    <Compile Include="Migrations\201704101650192_AddSettingTableForAdmin.Designer.cs">
+      <DependentUpon>201704101650192_AddSettingTableForAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704122317446_TrackFileName.cs" />
+    <Compile Include="Migrations\201704122317446_TrackFileName.Designer.cs">
+      <DependentUpon>201704122317446_TrackFileName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704151152501_UpdateUserModel.cs" />
+    <Compile Include="Migrations\201704151152501_UpdateUserModel.Designer.cs">
+      <DependentUpon>201704151152501_UpdateUserModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704181348024_AddPaymentTransaction.cs" />
+    <Compile Include="Migrations\201704181348024_AddPaymentTransaction.Designer.cs">
+      <DependentUpon>201704181348024_AddPaymentTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704231457489_AddCountriesUpdateUserModel.cs" />
+    <Compile Include="Migrations\201704231457489_AddCountriesUpdateUserModel.Designer.cs">
+      <DependentUpon>201704231457489_AddCountriesUpdateUserModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704240745068_GenresDescription.cs" />
+    <Compile Include="Migrations\201704240745068_GenresDescription.Designer.cs">
+      <DependentUpon>201704240745068_GenresDescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704251453051_ModifiedUserRegistration.cs" />
+    <Compile Include="Migrations\201704251453051_ModifiedUserRegistration.Designer.cs">
+      <DependentUpon>201704251453051_ModifiedUserRegistration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704251751455_SomeChanges_1.cs" />
+    <Compile Include="Migrations\201704251751455_SomeChanges_1.Designer.cs">
+      <DependentUpon>201704251751455_SomeChanges_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704260715297_AddNewRelationshipsBtwTrackAlbumsAndUserData.cs" />
+    <Compile Include="Migrations\201704260715297_AddNewRelationshipsBtwTrackAlbumsAndUserData.Designer.cs">
+      <DependentUpon>201704260715297_AddNewRelationshipsBtwTrackAlbumsAndUserData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704270649182_ChangePaymentTransactionColumns.cs" />
+    <Compile Include="Migrations\201704270649182_ChangePaymentTransactionColumns.Designer.cs">
+      <DependentUpon>201704270649182_ChangePaymentTransactionColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Configurations\AlbumPriceConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\AlbumTrackRelationConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\CountryConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\PriceLevelConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\SettingConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\TrackPriceConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\UserConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\UserDataConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\CurrencyRateConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\CurrencyConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\GenreConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\VoteConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\FeedbackConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\ArtistConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\AlbumConfiguration.cs" />
+    <Compile Include="Migrations\Configurations\TrackConfiguration.cs" />
+    <Compile Include="Context\ShopContext.cs" />
+    <Compile Include="DefaultRepositoriesNinjectModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AlbumRepository.cs" />
+    <Compile Include="Repositories\AlbumTrackRelationRepository.cs" />
+    <Compile Include="Repositories\BaseAddressRepository.cs" />
+    <Compile Include="Repositories\CountryRepository.cs" />
+    <Compile Include="Repositories\CurrencyRateRepository.cs" />
+    <Compile Include="Repositories\AlbumPriceRepository.cs" />
+    <Compile Include="Repositories\CurrencyRepository.cs" />
+    <Compile Include="Repositories\FeedbackRepository.cs" />
+    <Compile Include="Repositories\ArtistRepository.cs" />
+    <Compile Include="Repositories\GenreRepository.cs" />
+    <Compile Include="Infrastruture\IAlbumPriceRepository.cs" />
+    <Compile Include="Infrastruture\IAlbumRepository.cs" />
+    <Compile Include="Infrastruture\IArtistRepository.cs" />
+    <Compile Include="Infrastruture\ICurrencyRepository.cs" />
+    <Compile Include="Infrastruture\IFeedbackRepository.cs" />
+    <Compile Include="Infrastruture\IGenreRepository.cs" />
+    <Compile Include="Infrastruture\IPriceLevelRepository.cs" />
+    <Compile Include="Infrastruture\IRepositoryFactory.cs" />
+    <Compile Include="Infrastruture\IUserDataRepository.cs" />
+    <Compile Include="Repositories\OrderAlbumRepository.cs" />
+    <Compile Include="Repositories\OrderTrackRepository.cs" />
+    <Compile Include="Repositories\PaymentCardRepository.cs" />
+    <Compile Include="Repositories\PaymentTransactionRepository.cs" />
+    <Compile Include="Repositories\PriceLevelRepository.cs" />
+    <Compile Include="Repositories\PurchasedAlbumRepository.cs" />
+    <Compile Include="Repositories\PurchasedTrackRepository.cs" />
+    <Compile Include="Repositories\SettingRepository.cs" />
+    <Compile Include="Repositories\TrackPriceRepository.cs" />
+    <Compile Include="Repositories\UserDataRepository.cs" />
+    <Compile Include="Repositories\UserPaymentMethodRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\VoteRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Infrastruture\ITrackPriceRepository.cs" />
+    <Compile Include="Infrastruture\ITrackRepository.cs" />
+    <Compile Include="Infrastruture\ICurrencyRateRepository.cs" />
+    <Compile Include="Infrastruture\IVoteRepository.cs" />
+    <Compile Include="Repositories\TrackRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Settings.StyleCop" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ship.Infrastructure\Shop.Infrastructure.csproj">
+      <Project>{c0e3b0f8-3fd8-4d53-b3b1-b98bdf5da9cf}</Project>
+      <Name>Shop.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shop.Common\Shop.Common.csproj">
+      <Project>{3d15cc83-6093-4606-a948-d834033d3692}</Project>
+      <Name>Shop.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703141950344_Init.resx">
+      <DependentUpon>201703141950344_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703152237293_ReconfigureTracksContent.resx">
+      <DependentUpon>201703152237293_ReconfigureTracksContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703180835104_TablePrefixRemoved.resx">
+      <DependentUpon>201703180835104_TablePrefixRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703181116310_NewAlbumAndArtistRelations.resx">
+      <DependentUpon>201703181116310_NewAlbumAndArtistRelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703222040250_AddedUser.resx">
+      <DependentUpon>201703222040250_AddedUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703252105050_UserAndUserDataRelations.resx">
+      <DependentUpon>201703252105050_UserAndUserDataRelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703262002034_FixUserAndUserDataRelations.resx">
+      <DependentUpon>201703262002034_FixUserAndUserDataRelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704012052497_AddedTrackSample.resx">
+      <DependentUpon>201704012052497_AddedTrackSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704032220261_AddedTrackOwnerRelationship.resx">
+      <DependentUpon>201704032220261_AddedTrackOwnerRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704032227588_AddedAlbumOwnerRelationship.resx">
+      <DependentUpon>201704032227588_AddedAlbumOwnerRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704032338545_FixedDiscountMistake.resx">
+      <DependentUpon>201704032338545_FixedDiscountMistake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704041338001_UpdateRelationshipsBtwCartAndTracks.resx">
+      <DependentUpon>201704041338001_UpdateRelationshipsBtwCartAndTracks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704081859579_AddedRelationshipsBtwPurchasedItemsAndUsers.resx">
+      <DependentUpon>201704081859579_AddedRelationshipsBtwPurchasedItemsAndUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704101650192_AddSettingTableForAdmin.resx">
+      <DependentUpon>201704101650192_AddSettingTableForAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704122317446_TrackFileName.resx">
+      <DependentUpon>201704122317446_TrackFileName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704151152501_UpdateUserModel.resx">
+      <DependentUpon>201704151152501_UpdateUserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704181348024_AddPaymentTransaction.resx">
+      <DependentUpon>201704181348024_AddPaymentTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704231457489_AddCountriesUpdateUserModel.resx">
+      <DependentUpon>201704231457489_AddCountriesUpdateUserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704240745068_GenresDescription.resx">
+      <DependentUpon>201704240745068_GenresDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704251453051_ModifiedUserRegistration.resx">
+      <DependentUpon>201704251453051_ModifiedUserRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704251751455_SomeChanges_1.resx">
+      <DependentUpon>201704251751455_SomeChanges_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704260715297_AddNewRelationshipsBtwTrackAlbumsAndUserData.resx">
+      <DependentUpon>201704260715297_AddNewRelationshipsBtwTrackAlbumsAndUserData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704270649182_ChangePaymentTransactionColumns.resx">
+      <DependentUpon>201704270649182_ChangePaymentTransactionColumns.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

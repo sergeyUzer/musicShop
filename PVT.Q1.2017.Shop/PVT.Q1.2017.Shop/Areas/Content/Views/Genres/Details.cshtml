@@ -1,0 +1,35 @@
+﻿@using Shop.BLL.Utils
+@using Shop.Infrastructure.Enums
+@model Shop.Common.Models.GenreDetailsViewModel
+@{ ViewBag.Title = @Model.Name; }
+@Html.AntiForgeryToken()
+<body>
+<div class="genre-details" style="display: block; text-align: center;">
+    <div class="description">
+        <p style="font-size: 1.5em; text-align: initial">
+            @Html.DisplayFor(m => m.Description)
+        </p>
+    </div>
+    <div class="buttons">
+        @{
+            if (Request.IsAuthenticated)
+            {
+                var currentUser = ((CurrentUser)User);
+                if (currentUser.IsInRole(UserRoles.Admin.ToString()))
+                {
+                    <a class="btn btn-primary" href="@Url.Action("Edit", "Genres", new { Area = "Management", id = Model.Id })"><span class="glyphicon glyphicon-pencil"></span> Правка</a>
+                }
+            }
+
+        }
+
+    </
+    div>
+</div>
+</body>
+
+
+@section cssStyles{
+
+    <link href="~/Content/tracks.css" rel="stylesheet"/>
+}

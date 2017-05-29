@@ -1,0 +1,16 @@
+﻿@model Shop.Infrastructure.Models.PagedResult<Shop.Common.ViewModels.PaymentTransactionViewModel>
+@using PVT.Q1._2017.Shop.Helpers
+@using Shop.Common.Models
+
+@{
+    ViewBag.Title = "История заказов";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<h2>Заказы</h2>
+
+@if (Model != null)
+{
+    @Html.Partial("_Index", Model.Items)
+    @Html.PageLinks(Model, i => Url.Action("Index", new { id = i, controller = "PaymentTransaction", area = "Payment" }))
+}

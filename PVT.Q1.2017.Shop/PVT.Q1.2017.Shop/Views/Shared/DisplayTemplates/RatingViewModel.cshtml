@@ -1,0 +1,16 @@
+﻿@model Shop.Common.ViewModels.RatingViewModel
+
+<div>
+    @if (Model != null)
+    {
+        @Html.Partial("_Rating", Model.Rating)
+        <div style="white-space: nowrap; padding-left: 3px">
+            <strong>@Model.Rating</strong>
+            (оценок: @Model.VotesCount, комментариев: @Model.CommentsCount)
+        </div>
+    }
+    else
+    {
+        <div class="zero-stars"></div>
+    }
+</div>

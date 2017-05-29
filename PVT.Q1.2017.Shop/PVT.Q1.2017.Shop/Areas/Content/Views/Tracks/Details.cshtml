@@ -1,0 +1,27 @@
+﻿@using System.Web.Optimization
+@model Shop.Common.ViewModels.TrackAlbumsListViewModel
+@{
+    ViewBag.Title = Model.TrackDetails.Name;
+}
+
+<div class="track-details" style="text-align: initial">
+    <div>
+        @{
+            Html.RenderPartial("_TrackDetails", Model.TrackDetails);
+        }
+    </div>
+    
+    <div class="panel">
+        <div class="panel-body">
+            <h2>Альбомы с этим треком <span class="badge">@Model.TrackDetails.AlbumsCount</span></h2>
+            @{
+                Html.RenderPartial("_AlbumsList", Model.Albums);
+            }
+        </div>
+    </div>
+</div>
+
+@section cssStyles
+{
+    @Styles.Render("~/bundles/cssTracks")
+}

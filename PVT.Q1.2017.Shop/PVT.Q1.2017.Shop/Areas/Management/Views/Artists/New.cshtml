@@ -1,0 +1,50 @@
+@model PVT.Q1._2017.Shop.Areas.Management.ViewModels.ArtistManagementViewModel
+@{ ViewBag.Title = "Новый исполнитель";}
+
+<div class="artist-new">
+
+    @using (Html.BeginForm("New", "Artists", FormMethod.Post, new { enctype = "multipart/form-data", name = "formreg" }))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <div class="row col-md-12">
+                <div class="col-md-3">
+                    <img class="img-thumbnail" id="artist-img"
+                         onclick="document.formreg.PostedPhoto.click()" onerror="src = '/img/defuserpic.png'" src="data:image;base64"/>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="list-group col-md-12">
+                        <li class="list-group-item">
+                            @Html.DisplayNameFor(m => m.Name)
+                            @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Исполнитель" } })
+                        </li>
+                        <li class="list-group-item">
+                            @Html.DisplayNameFor(m => m.Birthday)
+                            @Html.EditorFor(m => m.Birthday, new { htmlAttributes = new { @class = "form-control datecontrol", placeholder = "Дата рождения", type = "text", id = "item-birthday" } })
+                        </li>
+                        <li class="list-group-item">
+                            @Html.DisplayNameFor(m => m.Biography)
+                            @Html.TextAreaFor(m => m.Biography, new { @class = "form-control", placeholder = "Биография", id = "item-bio" })
+                        </li>
+                    </ul>
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+                    </button>
+                </div>
+            </div>
+        </div>
+       
+        <input type="file" id="file" name="PostedPhoto" style="display: none"/>
+    }
+</div>
+
+@section scripts
+{
+    <script src="/Scripts/file-change.js" type="text/javascript"></script>
+}
+
+@section cssStyles{
+    <link href="~/Content/tracks.css" rel="stylesheet" /> 
+}

@@ -1,0 +1,50 @@
+﻿@model Shop.Common.ViewModels.CurrencyViewModel
+
+@{
+    ViewBag.Title = "Удаление валюты";
+}
+
+<div id="curr-table">
+	<h4>Вы уверены, что хотите удалить данные о валюте?</h4>
+	<hr/>
+	@Html.ValidationMessageFor(model => model.ShortName, "", new {@class = "text-danger"})
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.ShortName)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.ShortName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.FullName)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FullName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Code)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Code)
+		</dd>
+	</dl>
+
+	@using (Html.BeginForm("Delete", "Currency", new {area = "Admin"}, FormMethod.Post))
+	{
+		@Html.AntiForgeryToken()
+
+		@Html.HiddenFor(m => m.Id)
+		@Html.HiddenFor(m => m.Code)
+		@Html.HiddenFor(m => m.ShortName)
+		@Html.HiddenFor(m => m.FullName)
+
+		<div>
+			<input type="submit" value="Удалить" class="btn btn-danger"/> |
+			@Html.ActionLink("Назад к списку", "Index", "Currency", new {area = "Admin"}, null)
+		</div>
+	}
+</div>

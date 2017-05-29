@@ -1,0 +1,25 @@
+﻿@using System.Web.Optimization
+@model ICollection<Shop.Common.ViewModels.PurchasedAlbumViewModel>
+
+@{ ViewBag.Title = "Мои Альбомы"; }
+<audio controls controlsList="nodownload" id="audio-hidden" type="audio/mp3" autoplay="autoplay" style="display: none"></audio>
+<div class="panel">
+    <div class="panel-body panel-default">
+        <div class="tracks-list col-md-12">
+            <ul class="list-group">
+                @foreach (var item in Model)
+            {
+                    @Html.Partial("_PurchasedAlbumListItem", item)
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/get-audio.js"></script>
+}
+
+@section cssStyles{
+    @Styles.Render("~/bundles/cssTracks")
+}

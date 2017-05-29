@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E4A77FB8-FDF0-4EF0-8F2F-BC92098E306E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PVT.Q1._2017.Shop</RootNamespace>
+    <AssemblyName>PVT.Q1.2017.Shop</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentBootstrap, Version=3.3.5.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentBootstrap.3.3.5.4\lib\net40\FluentBootstrap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentBootstrap.Mvc, Version=3.3.5.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentBootstrap.Mvc.3.3.5.4\lib\net40\FluentBootstrap.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentBootstrap.Mvc.T4MVC, Version=3.3.5.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentBootstrap.Mvc.T4MVC.3.3.5.4\lib\net40\FluentBootstrap.Mvc.T4MVC.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=6.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.4.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc, Version=6.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.MVC5.6.4.0\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender, Version=3.0.0.0, Culture=neutral, PublicKeyToken=0774796e73ebf640, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFrameworkProfiler.4.0.4040\lib\HibernatingRhinos.Profiler.Appender.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvcSiteMapProvider, Version=4.6.22.0, Culture=neutral, PublicKeyToken=1923abe4657913cc, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcSiteMapProvider.MVC5.Core.4.6.22\lib\net45\MvcSiteMapProvider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvcSiteMapProvider.WebActivator, Version=4.6.22.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcSiteMapProvider.MVC5.4.6.22\lib\net45\MvcSiteMapProvider.WebActivator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.6\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\portable-net45+win8+wpa81\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\T4MVCExtensions.4.0.0\lib\net45\T4MVCExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TagLib.Portable, Version=2.2.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <HintPath>..\packages\TagLib.Portable.1.0.4\lib\portable-net45+win+wpa81+wp8+MonoAndroid10+xamarinios10+MonoTouch10\TagLib.Portable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\News\img\1-1.jpeg" />
+    <Content Include="Areas\News\img\1-10.jpeg" />
+    <Content Include="Areas\News\img\1-11.jpeg" />
+    <Content Include="Areas\News\img\1-2.jpeg" />
+    <Content Include="Areas\News\img\1-3.jpeg" />
+    <Content Include="Areas\News\img\1-4.png" />
+    <Content Include="Areas\News\img\1-5.jpeg" />
+    <Content Include="Areas\News\img\1-7.jpeg" />
+    <Content Include="Areas\News\img\1.jpeg" />
+    <Content Include="Areas\News\img\10.jpeg" />
+    <Content Include="Areas\News\img\11.jpeg" />
+    <Content Include="Areas\News\img\2-1.jpeg" />
+    <Content Include="Areas\News\img\2-4.jpeg" />
+    <Content Include="Areas\News\img\2-5.jpeg" />
+    <Content Include="Areas\News\img\2-7.jpeg" />
+    <Content Include="Areas\News\img\2.jpeg" />
+    <Content Include="Areas\News\img\3-1.jpeg" />
+    <Content Include="Areas\News\img\3-5.jpeg" />
+    <Content Include="Areas\News\img\3-7.jpeg" />
+    <Content Include="Areas\News\img\3.jpeg" />
+    <Content Include="Areas\News\img\4-1.jpeg" />
+    <Content Include="Areas\News\img\4-5.jpeg" />
+    <Content Include="Areas\News\img\4.png" />
+    <Content Include="Areas\News\img\5-5.jpeg" />
+    <Content Include="Areas\News\img\5.jpeg" />
+    <Content Include="Areas\News\img\6-5.jpeg" />
+    <Content Include="Areas\News\img\6.jpeg" />
+    <Content Include="Areas\News\img\7-5.jpeg" />
+    <Content Include="Areas\News\img\7.jpeg" />
+    <Content Include="Areas\News\img\8-5.jpeg" />
+    <Content Include="Areas\News\img\8.jpeg" />
+    <Content Include="Areas\News\img\9.jpeg" />
+    <Content Include="App_Start\EntityFrameworkProfilerBootstrapper.vb" />
+    <Content Include="Areas\News\Styles\news.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrapStars.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\news-block.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\tracks.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="img\1060281.png" />
+    <Content Include="img\20170224_201814.jpg" />
+    <Content Include="img\20170324_190839.jpg" />
+    <Content Include="img\back.jpg" />
+    <Content Include="img\cropped.jpg" />
+    <Content Include="img\failure.png" />
+    <Content Include="Content\ratingStars.png" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\ratingStars.css" />
+    <Content Include="Global.asax" />
+    <Content Include="img\arrow.png" />
+    <Content Include="img\defuserpic.png" />
+    <Content Include="img\success.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Management\Views\web.config" />
+    <Content Include="Areas\Payment\Views\web.config" />
+    <Content Include="Areas\Management\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Content\Views\web.config" />
+    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\Content\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Payment\Views\Cart\Index.cshtml" />
+    <Content Include="Areas\User\Views\Account\Register.cshtml" />
+    <Content Include="Areas\User\Views\Account\Login.cshtml" />
+    <Content Include="Areas\User\Views\Account\Success.cshtml" />
+    <Content Include="Areas\User\Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Areas\User\Views\Manage\Index.cshtml" />
+    <Content Include="Areas\User\Views\Manage\UpdatePersonal.cshtml" />
+    <Content Include="Areas\User\Views\Account\ForgotPasswordSuccess.cshtml" />
+    <Content Include="Areas\User\Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Areas\User\Views\Manage\ChangeLogin.cshtml" />
+    <Content Include="Areas\Admin\Views\Currency\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Currency\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Currency\Index.cshtml" />
+    <Content Include="Areas\Payment\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Payment\Views\Paypal\PaymentWithPaypal.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Payment\Views\Paypal\Success.cshtml" />
+    <Content Include="Areas\Payment\Views\Paypal\Failure.cshtml" />
+    <Content Include="Areas\Content\Views\Shared\RatingStarsPartialView.cshtml" />
+    <Content Include="Areas\Content\Views\Albums\Details.cshtml" />
+    <Content Include="Areas\Content\Views\Tracks\Details.cshtml" />
+    <Content Include="Areas\Content\Views\Shared\Audio\MiniPlayer.cshtml" />
+    <Content Include="Areas\Content\Views\Tracks\PurchasedList.cshtml" />
+    <Content Include="Areas\Payment\Views\PaymentTransaction\Index.cshtml" />
+    <Content Include="Areas\Payment\Views\PaymentTransaction\_Index.cshtml" />
+    <Content Include="Areas\Payment\Views\PaymentTransaction\Details.cshtml" />
+    <Content Include="Areas\News\Views\Music\Article.cshtml" />
+    <Content Include="Areas\News\Views\Shared\NewAlbumOfDorn.cshtml" />
+    <Content Include="Areas\News\Views\web.config" />
+    <Content Include="Areas\News\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\News\Views\Shared\AlfaJazzFest.cshtml" />
+    <Content Include="Areas\News\Views\Shared\DahaBraha.cshtml" />
+    <Content Include="Areas\News\Views\Shared\VyhPlanyRedakcii.cshtml" />
+    <Content Include="Areas\News\Views\Shared\NewClip5Nizza.cshtml" />
+    <Content Include="Areas\News\Views\Shared\PriznVLubviVSocSetyah.cshtml" />
+    <Content Include="Areas\News\Views\Shared\KLefflerPlaylist.cshtml" />
+    <Content Include="Areas\News\Views\Shared\NewAlbumGorillaz.cshtml" />
+    <Content Include="Areas\News\Views\Shared\ByorkVirtual.cshtml" />
+    <Content Include="Areas\News\Views\Shared\PianoboyRodina.cshtml" />
+    <Content Include="Areas\News\Views\Shared\DepecheNewAlbum.cshtml" />
+    <Content Include="Areas\Admin\Views\Currency\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Country\Index.cshtml" />
+    <Content Include="Areas\Payment\Views\PaymentTransaction\PayResult.cshtml" />
+    <Content Include="Areas\Admin\Views\Country\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Country\Edit.cshtml" />
+    <Content Include="Areas\Payment\Views\Cart\_tableStyles.cshtml" />
+    <Content Include="Areas\Content\Views\Albums\PurchasedList.cshtml" />
+    <Content Include="Areas\Content\Views\Shared\_PurchasedAlbumListItem.cshtml" />
+    <Content Include="Areas\Admin\Views\Currency\Rates.cshtml" />
+    <Content Include="Areas\Admin\Views\Currency\AddRate.cshtml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\numeric_input.min.js" />
+    <Content Include="Scripts\price.js" />
+    <Content Include="Scripts\validator.configuration.js" />
+    <Content Include="Views\Shared\_AlbumDetails.cshtml" />
+    <Content Include="Areas\Management\Views\Albums\Delete.cshtml" />
+    <Content Include="Areas\Management\Views\Tracks\Delete.cshtml" />
+    <Content Include="Areas\Content\Views\Shared\_PurchasedTrackListItem.cshtml" />
+    <Content Include="Areas\Management\Views\Artists\Delete.cshtml" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Areas\User\Views\Account\Confirm.cshtml" />
+    <Content Include="Areas\User\Views\Account\Siterules.cshtml" />
+    <Content Include="Areas\User\Views\Manage\DeleteCurrentUserMessage.cshtml" />
+    <Content Include="Areas\User\Views\Manage\ChangeAccepted.cshtml" />
+    <Content Include="Areas\User\Views\Manage\_UsersEdit.cshtml" />
+    <Content Include="Areas\User\Views\Manage\UsersEdit.cshtml" />
+    <Content Include="Areas\User\Views\Manage\Edit.cshtml" />
+    <Content Include="Areas\Management\Views\Albums\Edit.cshtml" />
+    <Content Include="Areas\Management\Views\Albums\New.cshtml" />
+    <Content Include="Areas\Management\Views\Artists\Edit.cshtml" />
+    <Content Include="Areas\Management\Views\Artists\New.cshtml" />
+    <Content Include="Areas\Management\Views\Genres\Edit.cshtml" />
+    <Content Include="Areas\Management\Views\Genres\New.cshtml" />
+    <Content Include="Areas\Management\Views\Tracks\Edit.cshtml" />
+    <Content Include="Areas\Management\Views\Tracks\New.cshtml" />
+    <Content Include="Areas\Content\Views\Artists\Details.cshtml" />
+    <Content Include="Areas\Content\Views\Artists\List.cshtml" />
+    <Content Include="Areas\Content\Views\Genres\Details.cshtml" />
+    <Content Include="Areas\Content\Views\Genres\List.cshtml" />
+    <Content Include="Areas\Content\Views\Tracks\List.cshtml" />
+    <Content Include="Areas\Content\Views\Albums\List.cshtml" />
+    <Content Include="Mvc.sitemap" />
+    <Content Include="Areas\Content\Views\Shared\Audio\PlayButtonPartial.cshtml" />
+    <Content Include="Areas\Content\Views\Shared\Audio\AudioSection.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\Index.cshtml" />
+    <Content Include="Areas\Management\Views\Albums\AddTracksToAlbum.cshtml" />
+    <Content Include="Areas\Content\Views\Shared\_AlbumsList.cshtml" />
+    <Content Include="Areas\Content\Views\Shared\_TracksList.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Content\Views\Feedbacks\Details.cshtml" />
+    <None Include="MvcSiteMapSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Scripts\datepicker-ru.js" />
+    <Content Include="Scripts\del-artist.js" />
+    <Content Include="Scripts\file-change.js" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\get-audio.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.date.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.date.extensions.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.extensions.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.numeric.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.numeric.extensions.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.phone.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.phone.extensions.min.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.regex.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\inputmask.regex.extensions.min.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.bundle.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <None Include="Settings.StyleCop" />
+    <None Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
+    <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\CustomDependencyResolver.cs" />
+    <Compile Include="App_Start\EntityFrameworkProfilerBootstrapper.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\ShopAuthorizeAttribute.cs" />
+    <Compile Include="App_Start\WebNinjectModule.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CountryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CurrencyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Admin\Helpers\AdminModelsMapper.cs" />
+    <Compile Include="Areas\Admin\ViewModels\RateViewModel.cs" />
+    <Compile Include="Areas\Content\ContentAreaRegistration.cs" />
+    <Compile Include="Areas\Content\Controllers\AlbumsController.cs" />
+    <Compile Include="Areas\Content\Controllers\ArtistsController.cs" />
+    <Compile Include="Areas\Content\Controllers\GenresController.cs" />
+    <Compile Include="Areas\Content\Controllers\TracksController.cs" />
+    <Compile Include="Areas\Content\Extentions\ButtonsHelper.cs" />
+    <Compile Include="Areas\Content\Extentions\BuyButtonHelper.cs" />
+    <Compile Include="Areas\Content\Extentions\ManagementButtonsHelper.cs" />
+    <Compile Include="Areas\Content\Controllers\FeedbacksController.cs" />
+    <Compile Include="Areas\Management\Controllers\AlbumsController.cs" />
+    <Compile Include="Areas\Management\Controllers\ArtistsController.cs" />
+    <Compile Include="Areas\Management\Controllers\GenresController.cs" />
+    <Compile Include="Areas\Management\Controllers\TracksController.cs" />
+    <Compile Include="Areas\Management\Extensions\HttpPostedFileBaseExtensions.cs" />
+    <Compile Include="Areas\Management\Helpers\CacheHelper.cs" />
+    <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
+    <Compile Include="Areas\Management\Helpers\ManagementMapper.cs" />
+    <Compile Include="Areas\Management\Validators\AlbumManagementValidator.cs" />
+    <Compile Include="Areas\Management\Validators\ArtistManagementValidator.cs" />
+    <Compile Include="Areas\Management\Validators\TrackManagementValidator.cs" />
+    <Compile Include="Areas\Management\ViewModels\AlbumManagementViewModel.cs" />
+    <Compile Include="Areas\Management\ViewModels\ArtistManagementViewModel.cs" />
+    <Compile Include="Areas\Management\ViewModels\GenreManagementViewModel.cs" />
+    <Compile Include="Areas\Management\ViewModels\TrackManagementViewModel.cs" />
+    <Compile Include="Areas\News\Controllers\MusicController.cs" />
+    <Compile Include="Areas\News\NewsAreaRegistration.cs" />
+    <Compile Include="Areas\Payment\Controllers\CartController.cs" />
+    <Compile Include="Areas\Payment\Controllers\PaymentTransactionController.cs" />
+    <Compile Include="Areas\Payment\Controllers\PaypalController.cs" />
+    <Compile Include="Areas\Payment\Helpers\PaymentMapper.cs" />
+    <Compile Include="Areas\Payment\PaymentAreaRegistration.cs" />
+    <Compile Include="Areas\User\Helpers\UserMapper.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CurrencyController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Areas\User\Controllers\AccountController.cs" />
+    <Compile Include="Areas\User\Controllers\ManageController.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\PageHelpers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <None Include="T4MVC.tt.hooks.t4" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
+    <Content Include="Areas\Content\Views\Shared\Audio\PlayerPartial.cshtml" />
+    <Content Include="Views\Shared\_Rating.cshtml" />
+    <Content Include="Views\Shared\_UserCurrency.cshtml" />
+    <Content Include="Views\Shared\_Stars.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PriceViewModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\RatingViewModel.cshtml" />
+    <Content Include="Views\Shared\_UserMenuPartial.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Shared\_TrackDetails.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\News\Models\" />
+    <Folder Include="Areas\Payment\Models\" />
+    <Folder Include="Areas\User\Models\" />
+    <Folder Include="Areas\User\Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ship.Infrastructure\Shop.Infrastructure.csproj">
+      <Project>{c0e3b0f8-3fd8-4d53-b3b1-b98bdf5da9cf}</Project>
+      <Name>Shop.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shop.BLL\Shop.BLL.csproj">
+      <Project>{14cd3c31-4dca-4798-82d5-de66a5c72602}</Project>
+      <Name>Shop.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shop.Common\Shop.Common.csproj">
+      <Project>{3d15cc83-6093-4606-a948-d834033d3692}</Project>
+      <Name>Shop.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shop.DAL\Shop.DAL.csproj">
+      <Project>{c30727da-8c05-4773-a9c9-b01c8e951fb4}</Project>
+      <Name>Shop.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4912</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4912/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="SelfHostServer">
+            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:4912/" workingDir="" />
+          </servers>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

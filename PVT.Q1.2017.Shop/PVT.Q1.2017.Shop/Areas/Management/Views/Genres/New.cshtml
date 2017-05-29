@@ -1,0 +1,23 @@
+﻿@model PVT.Q1._2017.Shop.Areas.Management.ViewModels.GenreManagementViewModel
+
+@{ ViewBag.Title = "Новый жанр";}
+
+@using (Html.BeginForm("New", "Genres", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div style="display: block; width: 100%; text-align: center">
+        <ul class="list-group" style="width: 60%; display: inline-block">
+            <li class="list-group-item">
+                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { placeholder = "Имя", @class="form-control" } })
+            </li>
+            <li class="list-group-item">
+                @Html.EditorFor(m => m.Description, new { htmlAttributes = new { placeholder = "Описание", @class = "form-control" } })
+            </li>
+        </ul>
+    </div>
+    <button type="submit" class="btn btn-primary" id="btn-save" style="display: inline-block; margin-top: 15px">Сохранить</button>
+}
+
+@section cssStyles{
+    <link href="~/Content/tracks.css" rel="stylesheet" type="text/css" />
+}

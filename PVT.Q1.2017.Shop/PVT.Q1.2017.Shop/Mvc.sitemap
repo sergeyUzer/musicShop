@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Главная" action="Index" controller="Home" changeFrequency="Always" updatePriority="Normal">
+
+    <mvcSiteMapNode title= "Новости муз индустрии" controller="Music" action="Article" area="News" preservedRouteParameters="partialName" />
+    <mvcSiteMapNode title="Вход" controller="Account" action="Login" area="User" />
+    <mvcSiteMapNode title="Регистрация" controller="Account" action="Register" area="User"/>
+    
+    
+    <mvcSiteMapNode title="Корзина"  action="Index" controller="Cart" area="Payment"/>
+    <mvcSiteMapNode title="Заказы"  action="Index" controller="PaymentTransaction" area="Payment">
+    <mvcSiteMapNode title="Детальная информация"  action="Details" controller="PaymentTransaction" area="Payment"/>
+      <mvcSiteMapNode title="Финансовые результаты"  action="PayResult" controller="PaymentTransaction" area="Payment"/>
+  </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Пользователи" controller="Manage" action="UsersEdit" area="User"  >
+      <mvcSiteMapNode title="Правка" controller="Manage" action="Edit" area="User" preservedRouteParameters="id" key="user-edit" />
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Настройки системы"  action="Index" controller="Setting" area="Admin"/>
+
+    <mvcSiteMapNode title="Валюта"  action="Index" controller="Currency" area="Admin" preservedRouteParameters="edit" key="сurr_edit">
+      <mvcSiteMapNode title="Новая валюта"  action="Create" controller="Currency" area="Admin"/>
+      <mvcSiteMapNode title="Правка"  action="Edit" controller="Currency" area="Admin" preservedRouteParameters="edit,id" key="сurr_id"/>
+      <mvcSiteMapNode title="Новый кросс-курс валют"  action="AddRate" controller="Currency" area="Admin" preservedRouteParameters="new-rate,id" key="сurr_new_rate_id"/>
+      <mvcSiteMapNode title="Кросс-курсы валют"  action="Rates" controller="Currency" area="Admin" preservedRouteParameters="edit-rate,id" key="сurr_rate_id"/>
+    </mvcSiteMapNode>  
+    
+    <mvcSiteMapNode title="Страны"  action="Index" controller="Country" area="Admin" preservedRouteParameters="edit" key="country_edit">
+      <mvcSiteMapNode title="Правка"  action="Edit" controller="Country" area="Admin" preservedRouteParameters="edit,id" key="country_id"/>
+    </mvcSiteMapNode>
+
+      <mvcSiteMapNode title="Исполнители" controller="Artists" action="List" area="Content" preservedRouteParameters="details" key="details">
+        <mvcSiteMapNode title="Новый исполнитель" action="New" area="Management" />
+        <mvcSiteMapNode title= "Детальная информация" action="Details" area="Content" preservedRouteParameters="details,id" key="artist-details-id" />
+        <mvcSiteMapNode title= "Правка" action="Edit" area="Management" preservedRouteParameters="details,id" key="artist-edit-id" />
+        <mvcSiteMapNode title= "Удаление" action="Delete" area="Management" preservedRouteParameters="delete,id" key="artist-delete-id" />
+      </mvcSiteMapNode>
+
+      <mvcSiteMapNode title="Альбомы" controller="Albums" action="List" area="Content">
+        <mvcSiteMapNode title="Новый альбом" action="New" area="Management" />
+        <mvcSiteMapNode title= "Треклист" action="Details" area="Content" preservedRouteParameters="details,id" key="album-details-id" />
+        <mvcSiteMapNode title= "Правка" action="Edit" area="Management" preservedRouteParameters="details,id" key="album-edit-id" />
+        <mvcSiteMapNode title= "Удаление" action="Delete" area="Management" preservedRouteParameters="delete,id" key="album-delete-id" />
+        <mvcSiteMapNode title="Добавление треков в альбом" action="AddTracksToAlbum" area="Management" preservedRouteParameters="details,tracks,id" key="album-tracks-edit-id" />
+      </mvcSiteMapNode>
+
+      <mvcSiteMapNode title="Треки" controller="Tracks" action="List" area="Content">
+        <mvcSiteMapNode title= "Детальная информация" action="Details" area="Content" preservedRouteParameters="details,id" key="track-id" />
+        <mvcSiteMapNode title= "Правка" action="Edit" area="Management" preservedRouteParameters="edit,id" key="edit-track-id" />
+        <mvcSiteMapNode title= "Удаление" action="Delete" area="Management" preservedRouteParameters="delete,id" key="track-delete-id" />
+        <mvcSiteMapNode title= "Новый трек" action="New" area="Management" preservedRouteParameters="new,id" key="track-new-id" />
+        <mvcSiteMapNode title="Отзывы" controller="Feedbacks" action="Details" area="Content">
+          <mvcSiteMapNode title= "Отзывы о треке" action="Details" area="Content" preservedRouteParameters="details,id" key="edit-feedback-id" />
+        </mvcSiteMapNode>
+      </mvcSiteMapNode>
+
+      <mvcSiteMapNode title="Жанры" controller="Genres" action="List" area="Content">
+        <mvcSiteMapNode title="Новый жанр" action="New" area="Management" />
+        <mvcSiteMapNode title= "Детальная информация" action="Details" area="Content" preservedRouteParameters="details,id" key="genre-details-id" />
+        <mvcSiteMapNode title= "Правка" action="Edit" area="Management" preservedRouteParameters="details,id" key="genre-edit-id" />
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+
+  </mvcSiteMap>

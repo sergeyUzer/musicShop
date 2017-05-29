@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Shop.Common.ViewModels.CurrencyViewModel>
+@{
+    ViewBag.Title = "Валюта";
+}
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create")" id="new-currency-btn"><span class="glyphicon glyphicon-plus"></span> Новая</a>
+</p>
+<p>
+    <a class="btn btn-primary" href="@Url.Action("AddRate")" id="new-currency-rate-btn"><span class="glyphicon glyphicon-plus"></span> Добавить кросс-курс</a>
+</p>
+
+<table class="table" id="curr-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>Операция</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.ActionLink("Правка", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new {style="color: red"})
+            </td>
+        </tr>
+    }
+</table>

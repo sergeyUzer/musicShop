@@ -1,0 +1,16 @@
+﻿@using System.Web.Optimization
+@using PVT.Q1._2017.Shop.Helpers
+@model Shop.Infrastructure.Models.PagedResult<Shop.Common.ViewModels.AlbumViewModel>
+@{
+    ViewBag.Title = "Все альбомы";
+}
+
+@{
+    Html.RenderPartial("_AlbumsList", Model.Items);
+}
+
+@Html.PageLinks(Model, i => Url.Action("List", "Albums", new { page = i, area = "Content" }))
+
+@section cssStyles{
+    @Styles.Render("~/bundles/cssTracks")
+}

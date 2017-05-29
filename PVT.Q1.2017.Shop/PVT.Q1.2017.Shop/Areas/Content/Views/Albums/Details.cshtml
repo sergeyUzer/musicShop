@@ -1,0 +1,36 @@
+﻿@using System.Web.Optimization
+@model Shop.Common.ViewModels.AlbumTracksListViewModel
+@{
+    ViewBag.Title = Model.AlbumDetails.Name;
+}
+
+<audio controls controlsList="nodownload" id="audio-hidden" type="audio/mp3" autoplay="autoplay" style="display: none"></audio>
+
+<div class="album-details col-md-12" style="display: inline-block">
+    @{
+        Html.RenderPartial("_AlbumDetails", Model.AlbumDetails);
+    }
+
+    <div class="panel">
+        <div class="panel-body" style="text-align: left">
+            <h2>
+                Треклист <span class="badge">@Model.AlbumDetails.TracksCount</span>
+            </h2>
+            <div class="scrollable">
+                @{
+                    Html.RenderPartial("_TracksList", Model.Tracks);
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="/Scripts/del-artist.js" type="text/javascript"></script>
+    <script src="~/Scripts/get-audio.js"></script>
+}
+
+@section cssStyles {
+    @System.Web.Optimization.Styles.Render("~/bundles/cssTracks")
+}

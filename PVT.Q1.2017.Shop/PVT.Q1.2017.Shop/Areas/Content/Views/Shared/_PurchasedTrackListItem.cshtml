@@ -1,0 +1,25 @@
+﻿@model Shop.Common.ViewModels.PurchasedTrackViewModel
+
+<li class="list-group-item" id="item-@Model.Id">
+    <div class="left col-md-10">
+        <img src="data:image;base64,@Convert.ToBase64String(Model.Image)" onerror="src = '/img/defuserpic.png'"/>
+        <div class="details">
+            <div class="details-left col-md-7">
+                <div class="btn-play">
+                    <a id="preview-btn col-md-12" onclick="javascript:GetAudioPlayer('@Url.Action("GetTrackAsStream", "Tracks", new { id = Model.Id })', @Model.Id);">
+                        <i class="btn-prev fa fa-play" style="font-size: 16px; opacity: 0.4"></i>
+                    </a>
+                </div>
+                <div class="track-header col-md-10">
+                    <a class="track-name" href="@Url.Action("Details", "Tracks", new { area = "Content", id = Model.Id })">@Html.DisplayFor(i => Model.Name)</a>
+                    <a class="artist-name" href="@Url.Action("Details", "Artists", new { area = "Content", id = Model.Id })">@Html.DisplayFor(i => Model.Artist.Name)</a>
+                </div>
+            </div>
+            <div class="details-right col-md-3">
+                <div class="stars">
+                    @Html.Partial("_Rating", Model.Rating)
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

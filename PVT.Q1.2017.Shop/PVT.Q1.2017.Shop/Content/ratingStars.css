@@ -1,0 +1,95 @@
+﻿
+.five-stars, .four-75-stars, .four-50-stars, .four-25-stars, .four-stars, .three-75-stars, .three-50-stars, .three-25-stars, .three-stars,
+.two-75-stars, .two-50-stars, .two-25-stars, .two-stars, .one-75-star, .one-50-star, .one-25-star, .one-star,
+.zero-75-stars, .zero-50-stars, .zero-25-stars, .zero-stars {
+    background: url('ratingStars.png') no-repeat;
+    width: 120px;
+    height: 24px;
+}
+
+.four-75-stars {
+    background-position: 0px -24px;
+}
+
+.four-50-stars {
+    background-position: 0px -48px;
+}
+
+.four-25-stars {
+    background-position: 0px -72px;
+}
+
+.four-stars {
+    background-position: 0px -96px;
+}
+
+.three-75-stars {
+    background-position: 0px -120px;
+}
+
+.three-50-stars {
+    background-position: 0px -144px;
+}
+
+.three-25-stars {
+    background-position: 0px -168px;
+}
+
+.three-stars {
+    background-position: 0px -192px;
+}
+
+.two-75-stars {
+    background-position: 0px -216px;
+}
+
+.two-50-stars {
+    background-position: 0px -240px;
+}
+
+.two-25-stars {
+    background-position: 0px -264px;
+}
+
+.two-stars {
+    background-position: 0px -288px;
+}
+
+.one-75-star {
+    background-position: 0px -312px;
+}
+
+.one-50-star {
+    background-position: 0px -336px;
+}
+
+.one-25-star {
+    background-position: 0px -360px;
+}
+
+.one-star {
+    background-position: 0px -384px;
+}
+
+.zero-75-stars {
+    background-position: 0px -408px;
+}
+
+.zero-50-stars {
+    background-position: 0px -432px;
+}
+
+.zero-25-stars {
+    background-position: 0px -456px;
+}
+
+.zero-stars {
+    background-position: 0px -480px;
+}
+
+.empty-star-place {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    cursor: pointer;
+}

@@ -1,0 +1,85 @@
+﻿@model PVT.Q1._2017.Shop.Areas.Management.ViewModels.TrackManagementViewModel
+@{
+    ViewBag.Title = "Новый трек";
+}
+
+@using (Html.BeginForm("New", "Tracks", FormMethod.Post, new { enctype = "multipart/form-data", name = "formreg" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ArtistId)
+
+    <div class="new-track" style="display: block; text-align: left">
+
+        <img class="img-thumbnail" id="artist-img" onclick="document.formreg.PostedImage.click()" onerror="src = '/img/defuserpic.png'" src="data:image;base64"/>
+
+        <ul class="list-group" style="width: 635px; height: 100%; display: inline-block; vertical-align: top">
+            <li class="list-group-item">
+                @Html.DisplayNameFor(m => m.Name)
+                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { placeholder = "Название", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </li>
+            <li class="list-group-item">
+                @Html.DisplayNameFor(m => m.ArtistName)
+                @Html.TextBoxFor(m => m.ArtistName, new { PlaceHolder = "Исполнитель", @class = "form-control", ReadOnly = "true" })
+            </li>
+            <li class="list-group-item">
+                @Html.DisplayNameFor(m => m.ReleaseDate)
+                @Html.EditorFor(m => m.ReleaseDate, new { htmlAttributes = new { placeholder = "Дата выхода", type = "text", @class = "form-control datecontrol" } })
+            </li>
+            <li class="list-group-item">
+                @Html.DisplayNameFor(m => m.GenreId)
+                @Html.DropDownListFor(model => model.GenreId, new SelectList(Model.Genres, "Id", "Name"), new { @class = "form-control" })
+            </li>
+            <li class="list-group-item">
+                @Html.DisplayNameFor(m => m.Duration)
+                @Html.EditorFor(m => m.Duration, new { htmlAttributes = new { placeholder = "Продолжительность", type = "text", @class = "form-control", id="duration" } })
+            </li>
+            <li class="list-group-item">
+                @Html.DisplayNameFor(m => m.Price)
+                <div class="row">
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.Price, new { id = "txtTrackPrice", @class = "form-control" })
+                    </div>
+                    <div class="col-sm-2">
+                        @{ Html.RenderAction("UserCurrency", "Currency", new { area = string.Empty }); }
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                @Html.DisplayNameFor(m => m.PostedTrackFile)
+                <input placeholder="Файл" type="text" class="form-control" id="file-path" onclick="document.formreg.PostedTrackFile.click()"/>
+            </li>
+            
+            <li class="list-group-item">
+                <div class="buttons">
+                    <button type="submit" class="btn btn-primary" id="btn-save">Сохранить</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <input type="file" id="file" name="PostedImage" accept=".jpg, *.png" style="display: none"/>
+    <input type="file" id="track-file" name="PostedTrackFile" accept=".mp3" style="display: none"/>
+}
+
+@section scripts
+{
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+    @System.Web.Optimization.Scripts.Render("~/bundles/inputmask")
+    @System.Web.Optimization.Scripts.Render("~/bundles/content-management-scripts")
+
+    <script>
+        function ClearTrackFile() {
+            $("#file-path").val('');
+        }
+
+        $(function () {
+            convertToPriceTextbox('txtTrackPrice');
+            $("#duration").inputmask("99:99:99");
+        });
+    </script>
+}
+
+@section cssStyles
+{
+    <link href="~/Content/tracks.css" rel="stylesheet" /> 
+}

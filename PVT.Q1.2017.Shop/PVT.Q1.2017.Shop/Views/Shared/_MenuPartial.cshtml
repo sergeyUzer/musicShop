@@ -1,0 +1,85 @@
+﻿@using Shop.Infrastructure.Enums
+@{ var user = Request.RequestContext.HttpContext.User as Shop.BLL.Utils.CurrentUser;}
+<li>@Html.ActionLink("Главная", "Index", new { area = string.Empty, controller = "Home" })</li>
+
+<li>@Html.ActionLink("Контакты", "Contact", new { area = string.Empty, controller = "Home" })</li>
+
+@{
+    var isAuthenticated = Request.IsAuthenticated;
+    var isAdmin = false;
+    var isSeller = false;
+    if (isAuthenticated)
+    {
+        isAdmin = User.IsInRole(UserRoles.Admin.ToString());
+        isSeller = User.IsInRole(UserRoles.Seller.ToString());
+
+    }
+}
+
+<li class="dropdown-item" style="display: inline-block; height: 50px;">
+    <div class="dropdown" id="purple-dropdown" style="padding: 15px 15px 15px 15px">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle media-menu" style="background-color: #222222; color: #999; text-decoration: none">Медиаконтент<b class="caret" style="border-color: #222222"></b></a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            @if (isAdmin || isSeller)
+            {
+                <li>
+                    <a href="@Url.Action("New", "Artists", new { area = "Management" })">Новый исполнитель</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("New", "Albums", new { area = "Management" })">Новый сборник</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("New", "Genres", new { area = "Management" })">Новый жанр</a>
+                </li>
+                <li role="separator" class="divider"></li>
+            }
+            <li>
+                <a href="@Url.Action("List", "Tracks", new { area = "Content" })">Треки</a>
+            </li>
+            <li>
+                <a href="@Url.Action("List", "Artists", new { area = "Content" })">Исполнители</a>
+            </li>
+            <li>
+                <a href="@Url.Action("List", "Albums", new { area = "Content" })">Альбомы</a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+@if (isAdmin || isSeller)
+{
+    <li class="dropdown-item" style="display: inline-block; height: 50px;">
+        <div class="dropdown" id="purple-dropdown" style="padding: 15px 15px 15px 15px">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="background-color: #222222; color: #999; text-decoration: none">Управление<b class="caret" style="border-color: #222222"></b></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            
+                <li>
+                    <a href="@Url.Action("PayResult", "PaymentTransaction", new { area = "Payment" })">Финансовые результаты</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+}
+
+@if (Request.IsAuthenticated && user.IsInRole(Shop.Infrastructure.Enums.UserRoles.Admin))
+{
+    <li class="dropdown-item" style="height: 50px; display: inline-block">
+        <div class="dropdown" id="purple-dropdown" style="padding: 15px 15px 15px 15px">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="color: #999; background-color: #222222; text-decoration: none">Администрирование<b class="caret" style="border-color: #222222"></b></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <li>
+                    <a href="@Url.Action("Index","Currency", new {area="Admin"})">Настройка валюты</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index","Setting", new {area="Admin"})">Глобальные настройки</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("UsersEdit","Manage", new {area="User"})">Управление пользователями</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index","Country", new {area="Admin"})">Редактирование стран</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+}

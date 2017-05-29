@@ -1,0 +1,13 @@
+﻿@model Shop.Common.ViewModels.PurchasedAlbumViewModel
+
+<div class="purchased-albumlist">
+    <div class="tracks-list col-md-32">
+        <ul class="list-group">
+            <h3 align="left">Альбом "<span>@Model.Name</span>". Треки в альбоме:</h3>
+            @foreach (var item in Model.Tracks)
+            {
+                @Html.Partial("_PurchasedTrackListItem", item)
+            }
+        </ul>
+    </div>
+</div>

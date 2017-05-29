@@ -1,0 +1,85 @@
+﻿@using PVT.Q1._2017.Shop.Helpers
+@using Shop.Infrastructure.Enums
+@model Shop.Infrastructure.Models.PagedResult<Shop.Common.ViewModels.ArtistDetailsViewModel>
+
+@{
+    ViewBag.Title = "Все исполнители";
+
+    bool isAuthenticated = Request.IsAuthenticated;
+    bool isAdmin = false;
+    bool isSeller = false;
+    if (isAuthenticated)
+    {
+        isAdmin = User.IsInRole(UserRoles.Admin.ToString());
+        isSeller = User.IsInRole(UserRoles.Seller.ToString());
+    }
+}
+
+<div class="artists-list">
+    <ul class="list-group" id="slist">
+        @foreach (var artist in Model.Items)
+        {
+            <li class="list-group-item" onclick="window.location.href = '@Url.Action("Details", "Artists", new { id = artist.Id, area = "Content" })'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table style="width: 100%; vertical-align: middle">
+                            <tr>
+                                <td>
+                                    <img class="img-thumbnail" src="data:image;base64,@Convert.ToBase64String(artist.Photo)"
+                                         onerror="src = '/img/defuserpic.png'"/>
+                                </td>
+                                <td style="padding: 5px 10px 5px 5px !important; white-space: nowrap">
+                                    <h3>
+                                        @Html.ActionLink(artist.Name, "Details", "Artists", new { id = artist.Id, area = "Content" }, new { @class = "artist-name" })
+                                    </h3>
+                                    <div class="artist-tracks-count">
+                                        <a href="@Url.Action("Details", "Artists", new { id = artist.Id, area = "Content" })"
+                                           title="Нажмите, чтобы увидеть все треки исполнителя" style="white-space: nowrap">
+                                            Треков <span class="badge">@artist.TracksCount</span>
+                                        </a>
+                                    </div>
+                                    <div class="artist-albums-count">
+                                        <a href="@Url.Action("Details", "Artists", new { id = artist.Id, area = "Content" })"
+                                           title="Нажмите, чтобы увидеть все альбомы исполнителя" style="white-space: nowrap">
+                                            Альбомов <span class="badge">@artist.AlbumsCount</span>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td style="width: 100%">
+                                    @{
+                                        string biography = string.Empty;
+                                        if (!string.IsNullOrWhiteSpace(artist.Biography))
+                                        {
+                                            biography = string.Format("{0}...", artist.Biography.Substring(0,Math.Min(artist.Biography.Length, 400)));
+                                        }
+                                    }
+                                    <div>@biography</div>
+                                </td>
+                                <td>
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        if (isAdmin || isSeller)
+                                        {
+                                            <div class="btn-align">
+                                                <div class="buy-btn">
+                                                    <a class="btn btn-primary" href="@Url.Action("Edit", "Artists", new { Area = "Management", id = artist.Id })">
+                                                        <span class="glyphicon glyphicon-pencil"></span> Правка
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+@Html.PageLinks(Model, i => Url.Action("List", "Artists", new { page = i, area = "Content"}))
+
+@section cssStyles{
+    <link href="~/Content/tracks.css" rel="stylesheet"/>
+}

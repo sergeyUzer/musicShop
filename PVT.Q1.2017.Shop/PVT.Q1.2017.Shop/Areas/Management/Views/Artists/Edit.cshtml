@@ -1,0 +1,53 @@
+﻿@model PVT.Q1._2017.Shop.Areas.Management.ViewModels.ArtistManagementViewModel
+
+@{
+    ViewBag.Title = "Правка";
+}
+
+@using (Html.BeginForm("Edit", "Artists", FormMethod.Post, new { enctype = "multipart/form-data", name = "formreg" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Photo)
+
+    <div class="artist-edit">
+        <img class="img-thumbnail" id="details-img" onclick="document.formreg.PostedPhoto.click()"
+             onerror="src = '/img/defuserpic.png'" src="data:image;base64,@Convert.ToBase64String(Model.Photo)"/>
+        <div class="details">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    @Html.DisplayNameFor(m => m.Name)
+                    @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Исполнитель" }, value = Model.Name })
+                </li>
+                <li class="list-group-item">
+                    @Html.DisplayNameFor(m => m.Birthday)
+                    @Html.EditorFor(m => m.Birthday, new { htmlAttributes = new { @class = "form-control datecontrol", placeholder = "Дата рождения/основания", type = "text", value = Model.Birthday } })
+                </li>
+                <li class="list-group-item">
+                    @Html.DisplayNameFor(m => m.Biography)
+                    @Html.TextAreaFor(e => e.Biography, new { placeholder = "Биография", value = Model.Biography })
+                </li>
+            </ul>
+        </div>
+        <div class="buttons">
+            <div >
+                <a class="btn btn-primary" id="add-track" aria-label="Left Align" href="@Url.Action("New", "Tracks", new { area = "Management", artistId = Model.Id })"><span class="glyphicon glyphicon-plus"></span> Трек</a>
+                <a class="btn btn-primary" id="add-album" aria-label="Left Align" href=@Url.Action("New", "Albums", new { area = "Management", artistId = Model.Id })><span class="glyphicon glyphicon-plus"></span> Альбом</a>
+                <button type="submit" class="btn btn-success" id="btn-save" aria-label="Left Align"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</button>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "Artists", new { area = "Management", id = Model.Id })">
+                    <span class="glyphicon glyphicon-remove"></span> Удалить
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="file" name="PostedPhoto" style="display: none" value=@Model.Photo/>
+}
+
+@section scripts
+{
+    <script src="/Scripts/file-change.js" type="text/javascript"></script>
+}
+
+@section cssStyles{
+    <link href="/Content/tracks.css" rel="stylesheet" type="text/css"/>
+}

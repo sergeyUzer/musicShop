@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Удалить аккаунт";
+}
+
+<h3>Удалить аккаунт</h3>
+
+<input type="button" class="btn" value="Редактировать данные профиля" onclick="location.href='@Url.Action("UpdatePersonal", "Manage", new { area = "User"})'" />
+<input type="button" class="btn" value="Изменить пароль" onclick="location.href='@Url.Action("ChangePassword", "Manage", new { area = "User"})'" />
+<input type="button" class="btn" value="Изменить логин" onclick="location.href='@Url.Action("ChangeLogin", "Manage", new { area = "User"})'" />
+<input type="button" class="btn" value="Удалить аккаунт" onclick="location.href='@Url.Action("DeleteCurrentUserMessage", "Manage", new { area = "User"})'" />
+
+
+<div class="user-reg">
+
+    <h3>Вы уверены, что хотите удалить аккаунт?</h3>
+
+    <hr />
+
+    @using (Html.BeginForm("DeleteCurrentUser", "Manage", new { area = "User" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-danger" /> 
+        </div>
+    }
+</div>

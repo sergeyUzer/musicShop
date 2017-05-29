@@ -1,0 +1,16 @@
+﻿@model Shop.Common.ViewModels.PriceViewModel
+
+@if (Model != null)
+{
+    <b>
+        @Model.Amount
+        @if (!string.IsNullOrWhiteSpace(Model.Currency.Symbol))
+        {
+            @Model.Currency.Symbol
+        }
+        else
+        {
+            @Model.Currency.ShortName
+        }
+    </b>
+}

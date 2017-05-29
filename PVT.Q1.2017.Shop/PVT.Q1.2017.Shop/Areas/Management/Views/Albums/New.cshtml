@@ -1,0 +1,68 @@
+﻿@model PVT.Q1._2017.Shop.Areas.Management.ViewModels.AlbumManagementViewModel
+
+<div style="text-align: left">
+    @using (Html.BeginForm("New", "Albums", FormMethod.Post, new { name = "formreg", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="@Html.NameFor(m => m.ArtistId)" value="@Model.ArtistId" />
+
+        <div class="album-new">
+            <div class="top">
+                <div class="center">
+                    <img class="img-thumbnail" id="new-album-img" onclick="document.formreg.PostedCover.click()" onerror="src = '/img/defuserpic.png'" src="data:image;base64" />
+
+                    <div class="details">
+                        <div class="list-back">
+                            <ul class="list-group">
+                                @if (Model.ArtistId != null && Model.ArtistId > 0)
+                                {
+                                    <li id="first" class="list-group-item">
+                                        <input type="text" class="form-control" value=@Model.ArtistName readonly="readonly"/>
+                                    </li>
+                                }
+                                <li class="list-group-item">
+                                    @Html.EditorFor(m => Model.Name, new { htmlAttributes = new { placeholder = "Название", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(m=>m.Name, "", new {@class="text-danger"})
+                                </li>
+                                <li class="list-group-item">
+                                    @Html.EditorFor(m => Model.ReleaseDate, new { htmlAttributes = new { id = "datep", placeholder = "Дата релиза", type = "text", @class = "form-control datecontrol" } })
+                                </li>
+                                <li class="list-group-item" style="text-align: left">
+                                    @Html.DisplayNameFor(m => m.Price)
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(m => m.Price, new { id = "txtAlbumPrice", @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3">
+                                            @{ Html.RenderAction("UserCurrency", "Currency", new { area = string.Empty }); }
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <input type="file" id="file" name="PostedCover" accept=".jpg, *.png" style="display: none" />
+            </div>
+            <div class="buttons">
+                <a class="btn btn-primary" href="JavaScript:window.history.back(1)"><span class="glyphicon glyphicon-backward"></span> Назад</a>
+                <button type="submit" class="btn btn-success" id="btn-save"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</button>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts
+{
+    @System.Web.Optimization.Scripts.Render("~/bundles/content-management-scripts")
+
+    <script>
+        $(function() {
+            convertToPriceTextbox('txtAlbumPrice');
+        });
+    </script>
+}
+
+@section cssStyles{
+    <link href="/Content/tracks.css" rel="stylesheet" type="text/css"/>
+}

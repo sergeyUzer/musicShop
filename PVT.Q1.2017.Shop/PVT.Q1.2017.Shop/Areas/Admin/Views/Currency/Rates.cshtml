@@ -1,0 +1,55 @@
+﻿@model IEnumerable< PVT.Q1._2017.Shop.Areas.Admin.ViewModels.RateViewModel>
+
+@{
+    ViewBag.Title = "Rates";
+}
+
+<h2>Rates</h2>
+<p>
+    @Html.ActionLink("Go back", "Index")
+</p>
+<p>
+    @Html.ActionLink("Add new rate", "AddRate")
+</p>
+<div class="panel">
+    <div class="panel-body panel-default">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.From)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.To)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Value)
+                </th>
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @item.From.First(c => c.Id == item.FromId).ShortName
+                </td>
+                <td>
+                    @item.To.First(c => c.Id == item.ToId).ShortName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteRate", new { id=item.Id })
+                </td>
+            </tr>
+        }
+        </table>
+    </div>
+</div>
+

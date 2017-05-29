@@ -1,0 +1,119 @@
+﻿@using Shop.Infrastructure.Enums
+
+@{
+    var isAuthenticated = Request.IsAuthenticated;
+    var isAdmin = false;
+    var isSeller = false;
+    if (isAuthenticated)
+    {
+        isAdmin = User.IsInRole(UserRoles.Admin.ToString());
+        isSeller = User.IsInRole(UserRoles.Seller.ToString());
+
+    }
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Music Shop</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    @RenderSection("cssStyles", required: false)
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @System.Web.Optimization.Scripts.Render("~/bundles/modernizr")
+
+    <meta name="description" content="PVT.2017.Q1 Music Shop" />
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Music Shop", "Index", "Home", new { area = string.Empty }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav">
+                    @Html.Partial("_MenuPartial")
+                </ul>
+                @if (isAuthenticated && !isSeller && !isAdmin)
+                {
+                    <ul class="nav navbar-nav" style="display: inline-block">
+                        <li>
+                            <a>@{ Html.RenderAction("UserCurrency", "Currency", new { area = string.Empty }); }</a>
+                        </li>
+                    </ul>
+                    using (Html.BeginForm("LogOut", "Account", new { area = "User" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right", style = "display: inline-block" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <ul class="nav navbar-nav navbar-right">
+                            @if (User.IsInRole(UserRoles.Buyer.ToString()) || User.IsInRole(UserRoles.Customer.ToString()))
+                            {
+                                <li>
+                                    @Html.Partial("_UserMenuPartial", User.Identity.Name)
+                                </li>
+
+                                <li>
+                                    <a class="btn btn-sm btn-default" id="main-cart-icon" href="@Url.Action("Index", "Cart", new { area = "Payment" })"
+                                        title="Нажмите, чтобы перейти в Вашу корзину">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                                        <span id="cart-itemsCount" class="badge">@Session["OrdersCount"]</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                        }
+                    }
+                    else
+                    {
+                        if (!isAuthenticated)
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>@Html.ActionLink("Регистрация", "Register", "Account", new { area = "User" }, new { id = "registerLink" })</li>
+                                <li>@Html.ActionLink("Войти", "Login", "Account", new { area = "User" }, new { id = "loginLink" })</li>
+                            </ul>
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("LogOut", "Account", new { area = "User" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right", style = "display: inline-block" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><label class="navbar-text">Привет, @User.Identity.Name</label></li>
+                                    <li><input type="submit" value="Выйти" class="btn btn-link navbar-btn" /></li>
+                                </ul>
+                                           
+                                            
+                            }
+                        }
+
+                    }
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <div class="main-header">
+            <h1 class="title">@ViewBag.Title</h1>
+            <div id="bc-override">@Html.MvcSiteMap().SiteMapPath()</div>
+        </div>
+
+        @RenderBody()
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Music Shop</p>
+        </footer>
+    </div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/common.js?v=3"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

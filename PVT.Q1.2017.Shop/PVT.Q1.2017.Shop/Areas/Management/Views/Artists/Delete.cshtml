@@ -1,0 +1,46 @@
+﻿@model PVT.Q1._2017.Shop.Areas.Management.ViewModels.ArtistManagementViewModel
+
+@{
+    ViewBag.Title = "Удаление исполнителя";
+}
+
+<h3>Вы уверены, что хотите удалить исполнителя "@Model.Name"?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Biography)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Biography)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Name)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-danger" /> |
+            @Html.ActionLink("Назад к правке", "Edit", "Artists", new { area = "Management", id = Model.Id }, null)
+        </div>
+    }
+</div>

@@ -1,0 +1,101 @@
+﻿@using PVT.Q1._2017.Shop.Areas.Content.Extentions
+@using Shop.BLL.Utils
+@using Shop.Infrastructure.Enums
+@model Shop.Common.ViewModels.TrackDetailsViewModel
+
+@{
+    var isAuthenticated = Request.IsAuthenticated;
+    var currentUserId = 0;
+    var isAdmin = false;
+    var isSeller = false;
+    var isBuyer = false;
+    if (isAuthenticated)
+    {
+        var currentUser = ((CurrentUser)User);
+        currentUserId = currentUser.Id;
+        isAdmin = User.IsInRole(UserRoles.Admin.ToString());
+        isSeller = User.IsInRole(UserRoles.Seller.ToString());
+        isBuyer = User.IsInRole(UserRoles.Buyer.ToString()) || User.IsInRole(UserRoles.Customer.ToString());
+    }
+
+}
+
+<div class="container">
+    <div class="common">
+        <img id="artist-img" onclick="document.formreg.PostedPhoto.click()" class="img-thumbnail"
+             onerror="src = '/img/defuserpic.png'" src="data:image;base64,@Convert.ToBase64String(Model.Image)"/>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @if (!(isAdmin || isSeller))
+                {
+                    <table>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => model.Rating)
+                            </td>
+                            <td style="vertical-align: top">
+                                @Html.ButtonWithIcon("btn btn-xs btn-success", "glyphicon glyphicon-comment", "Оставить отзыв", Url.Action("Details", "Feedbacks", new { area = "Content", trackId = Model.Id }))
+                            </td>
+                        </tr>
+                    </table>
+                }
+                <p style="position: absolute; top: 25px; right: 20px">
+                    <strong>@Html.DisplayNameFor(m => m.Price):</strong> @Html.DisplayFor(m => m.Price)
+                </p>
+            </div>
+            <div class="panel-body">
+                <div class="center">
+                    <p>
+                        <strong>@Html.DisplayNameFor(m => m.Artist):</strong>
+
+                        <a href="@Url.Action("Details", "Artists", new { id = Model.Artist.Id, area = "Content" })"
+                           title="Нажмите, чтобы увидеть информацию об исполнителе">
+                            @Model.Artist.Name
+                        </a>
+                    </p>
+                    <p>
+                        <strong>@Html.DisplayNameFor(m => m.ReleaseDate):</strong> @Html.ValueFor(m => m.ReleaseDate, "{0:dd MMMM yyyy} г.")
+                    </p>
+                    <p>
+                        <strong>@Html.DisplayNameFor(m => m.Genre):</strong> @Html.DisplayTextFor(m => m.Genre.Name)
+                    </p>
+                    <p>
+                        <strong>@Html.DisplayNameFor(m => m.Duration):</strong> @Html.ValueFor(m => m.Duration, "{0:mm\\:ss}")
+                    </p>
+                    @if (Model.TrackSample != null && Model.TrackSample.Length > 0)
+                    {
+                        <audio controls style="width: 100%; height: 35px">
+                            <source src="@Url.Action("LoadSample", "Tracks", new { area = "Content", id = Model.Id })" type="audio/mp3"/>
+                        </audio>
+                    }
+                </div>
+                @if (isAuthenticated)
+                {
+                    <div class="buttons">
+                        @if (isAdmin || (isSeller && (Model.OwnerId <= 0m || Model.OwnerId == currentUserId)))
+                        {
+                            <a href="@Url.Action("Edit", "Tracks", new { Area = "Management", id = Model.Id })">
+                                <i class="fa fa-pencil"></i> Правка
+                            </a>
+                        }
+                        else if (isBuyer)
+                        {
+                            if (Model.IsPurchased)
+                            {
+                                @Html.ButtonWithIcon("btn btn-sm btn-success", "glyphicon glyphicon-music", "Мои треки", Url.Action("PurchasedList", "Tracks", new { area = "Content" }))
+                            }
+                            else if (Model.Price != null)
+                            {
+                                var price = string.Format("{0}{1}", Model.Price.Amount, Model.Price.Currency.Symbol ?? Model.Price.Currency.ShortName);
+                                <div class="buy-btn">
+                                    @Html.BtnBuyTrack(Model.Id, Model.IsOrdered, price)
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
